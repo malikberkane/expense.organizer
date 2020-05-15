@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Padding="10"
+    BackgroundColor="{StaticResource MainColor}"
+    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    x:Class="expense.manager.Views.Pages.AboutPage">
+
+    <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
+
+    <Shell.TitleView>
+        <ContentView Padding="10">
+            <Label
+                Text="{x:Static manager:AppContent.AboutPageTitle}"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand" />
+        </ContentView>
+    </Shell.TitleView>
+
+
+    <StackLayout
+        Spacing="6"
+        Padding="6"
+        HorizontalOptions="Center">
+        <Label
+            Text="Expense organizer v1.0"
+            HorizontalOptions="Start"
+            Margin="3" />
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static manager:AppContent.Developer}" Margin="3" />
+
+            <Label Text="Malik BERKANE" Margin="3" />
+
+        </StackLayout>
+
+        <Button Margin="0" Text="{x:Static manager:AppContent.GoToSourceCode}" />
+    </StackLayout>
+
+</ContentPage>

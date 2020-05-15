@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="AboutPageTitle" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="AddCategoryPageTitle" xml:space="preserve">
+    <value>Ajout catégorie</value>
+  </data>
+  <data name="AddExpenseConfirmation" xml:space="preserve">
+    <value>Voulez-vous ajouter cette dépense?</value>
+  </data>
+  <data name="AddExpensePageTitle" xml:space="preserve">
+    <value>Ajout dépense</value>
+  </data>
+  <data name="AddTagsLabel" xml:space="preserve">
+    <value>Ajouter tags</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Alerte</value>
+  </data>
+  <data name="AmountPlaceholder" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="Bars" xml:space="preserve">
+    <value>Bars</value>
+  </data>
+  <data name="Bills" xml:space="preserve">
+    <value>Factures</value>
+  </data>
+  <data name="ByCategTabTitle" xml:space="preserve">
+    <value>Par catégorie</value>
+  </data>
+  <data name="ByDateTabTitle" xml:space="preserve">
+    <value>Par date</value>
+  </data>
+  <data name="ByTagTabTitle" xml:space="preserve">
+    <value>Par tag</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="CancelExpenseConfirmation" xml:space="preserve">
+    <value>Voulez-vous annuler cette dépense?</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="CategoryLabelPlaceholder" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Monnaie</value>
+  </data>
+  <data name="CurrencyChoicePageTitle" xml:space="preserve">
+    <value>Choix monnaie</value>
+  </data>
+  <data name="CurrentMonthLabel" xml:space="preserve">
+    <value>Mois courant:</value>
+  </data>
+  <data name="DateLabel" xml:space="preserve">
+    <value>Date:</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="DeleteCategoryConfirmation" xml:space="preserve">
+    <value>Souhaitez-vous supprimer cette catégorie? Toutes les dépenses seront supprimées.</value>
+  </data>
+  <data name="DeleteCategoryDialog" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="DeleteExpenseConfirmation" xml:space="preserve">
+    <value>Voulez-vous supprimer cette dépense?</value>
+  </data>
+  <data name="DeleteTagConfirmation" xml:space="preserve">
+    <value>Voulez-vous supprimer ce tag?</value>
+  </data>
+  <data name="DetailsLabel" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="Developer" xml:space="preserve">
+    <value>Développeur:</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="EditCategoryDialog" xml:space="preserve">
+    <value>Modifier catégorie</value>
+  </data>
+  <data name="EditExpenseDialog" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="EnterTagNamePrompt" xml:space="preserve">
+    <value>Renseigner le nom du tag</value>
+  </data>
+  <data name="Entertainment" xml:space="preserve">
+    <value>Loisirs</value>
+  </data>
+  <data name="Expense" xml:space="preserve">
+    <value>Dépense</value>
+  </data>
+  <data name="ExpenseLabelPlaceholder" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Food" xml:space="preserve">
+    <value>Alimentaire</value>
+  </data>
+  <data name="Gifts" xml:space="preserve">
+    <value>Cadeaux</value>
+  </data>
+  <data name="GoToSourceCode" xml:space="preserve">
+    <value>Consulter le code source</value>
+  </data>
+  <data name="Grossery" xml:space="preserve">
+    <value>Courses</value>
+  </data>
+  <data name="Housing" xml:space="preserve">
+    <value>Maison</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="InvalidItemAlert" xml:space="preserve">
+    <value>Le libellé et le montant sont obligatoires.</value>
+  </data>
+  <data name="MonthlyRecurringBudgetLabel" xml:space="preserve">
+    <value>Budget mensuel</value>
+  </data>
+  <data name="Movies" xml:space="preserve">
+    <value>Cinéma</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Aucune</value>
+  </data>
+  <data name="NoTagsLinked" xml:space="preserve">
+    <value>Aucun tags.</value>
+  </data>
+  <data name="OfBudget" xml:space="preserve">
+    <value>du budget</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="ParentCategoryLabel" xml:space="preserve">
+    <value>Catégorie parent:</value>
+  </data>
+  <data name="Ponctual" xml:space="preserve">
+    <value>Ponctuel</value>
+  </data>
+  <data name="Recurring" xml:space="preserve">
+    <value>Récurrent</value>
+  </data>
+  <data name="RemoveTagPrompt" xml:space="preserve">
+    <value>Supprimer le tag de la liste?</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="SelectParentPageTitle" xml:space="preserve">
+    <value>Catégorie parent</value>
+  </data>
+  <data name="SettingsPageTitle" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="SpecificBudgetNote" xml:space="preserve">
+    <value>Renseigner un montant ici si vous souhaitez assigner un budget spécifique pour ce mois.</value>
+  </data>
+  <data name="SpecifiedBudgetLabel" xml:space="preserve">
+    <value>Budget spécifique</value>
+  </data>
+  <data name="TagChoicePageTitle" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TagRecapPageTitle" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="Trips" xml:space="preserve">
+    <value>Voyages</value>
+  </data>
+  <data name="Untag" xml:space="preserve">
+    <value>Détaguer</value>
+  </data>
+  <data name="UntagExpenseConfirmation" xml:space="preserve">
+    <value>Voulez-vous détaguer cette dépense?</value>
+  </data>
+  <data name="UntagExpenseDialog" xml:space="preserve">
+    <value>Détaguer</value>
+  </data>
+  <data name="UpdateCategoryPageTitle" xml:space="preserve">
+    <value>Modifier catégorie</value>
+  </data>
+  <data name="UpdateExpensePageTitle" xml:space="preserve">
+    <value>Modifier dépense</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+</root>

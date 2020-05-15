@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    Title="{x:Static manager:AppContent.TagRecapPageTitle}"
+    BackgroundColor="{StaticResource MainColor}"
+    Padding="10"
+    x:Class="expense.manager.Views.Pages.TagRecapPage">
+    <Shell.NavBarIsVisible>False</Shell.NavBarIsVisible>
+
+
+
+    <AbsoluteLayout>
+
+        <CollectionView
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            x:Name="CollectionView"
+            ItemsSource="{Binding Items}"
+            ItemSizingStrategy="MeasureAllItems"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+            SelectionChangedCommand="{Binding ItemSelectionCommand}"
+            VerticalOptions="FillAndExpand">
+
+            <CollectionView.Header>
+                <ContentView Padding="20">
+                    <Label
+                        Text="{x:Static manager:AppContent.TagRecapPageTitle}"
+                        FontAttributes="Bold"
+                        FontSize="18"
+                        VerticalOptions="CenterAndExpand" />
+                </ContentView>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <SwipeView x:Name="mySwipeView">
+                        <SwipeView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </SwipeView.GestureRecognizers>
+                        <SwipeView.LeftItems>
+                            <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
+                                <SwipeItem
+                                    Text="{x:Static manager:AppContent.Edit}"
+                                    BackgroundColor="{StaticResource MainColor}"
+                                    Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
+                                    CommandParameter="{Binding .}" />
+
+                                <SwipeItem
+                                    Text="{x:Static manager:AppContent.Delete}"
+                                    BackgroundColor="{StaticResource MainColor}"
+                                    Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <ContentView Padding="3" BackgroundColor="{StaticResource MainColor}">
+                            <Frame
+                                Padding="5,2.5"
+                                x:Name="myFrame"
+                                BackgroundColor="{StaticResource FrameBackgroundColor}">
+                                <StackLayout Margin="15">
+
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout.Resources>
+                                            <ResourceDictionary>
+                                                <Style TargetType="Label">
+                                                    <Setter Property="TextColor" Value="{StaticResource CellItemsColor}" />
+
+                                                </Style>
+                                            </ResourceDictionary>
+                                        </StackLayout.Resources>
+
+                                        <Image Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.LabelOutline}, Color=#E85D4A, Size=25}" BackgroundColor="Transparent" />
+
+                                        <Label
+                                            Text="{Binding Name}"
+                                            FontSize="18"
+                                            TextColor="DarkSlateGray" />
+
+                                        <ImageButton
+                                            Padding="0"
+                                            HorizontalOptions="EndAndExpand"
+                                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                                            Source="{FontImage FontFamily=MaterialFontFamily,
+                                                               Glyph={x:Static manager:IconFont.KeyboardArrowRight},
+                                                               Color=Black,
+                                                               Size=20}"
+                                            BackgroundColor="Transparent" />
+
+
+                                    </StackLayout>
+
+                                    <BoxView
+                                        BackgroundColor="LightGray"
+                                        HeightRequest="1"
+                                        HorizontalOptions="FillAndExpand" />
+
+                                    <StackLayout Orientation="Horizontal">
+
+
+
+                                        <Label
+                                            Text="{Binding AmmountFormatted}"
+                                            TextColor="Black"
+                                            HorizontalOptions="EndAndExpand" />
+                                    </StackLayout>
+
+
+                                </StackLayout>
+
+
+                            </Frame>
+                        </ContentView>
+
+                    </SwipeView>
+
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+
+        <ImageButton
+            Padding="0"
+            AbsoluteLayout.LayoutBounds="0.97,0.97,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Command="{Binding AddItemCommand}"
+            Source="{FontImage FontFamily=MaterialFontFamily,
+                               Glyph={x:Static manager:IconFont.AddCircle},
+                               Color={StaticResource SecondaryColor},
+                               Size=60}"
+            BackgroundColor="Transparent" />
+
+    </AbsoluteLayout>
+</ContentPage>

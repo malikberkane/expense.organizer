@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:views="clr-namespace:expense.manager.Views"
+    BackgroundColor="{StaticResource MainColor}"
+    Padding="10"
+    x:Class="expense.manager.Views.Pages.CurrencyChoicePage">
+
+    <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
+
+    <Shell.TitleView>
+        <ContentView Padding="10">
+            <Label
+                Text="{x:Static manager:AppContent.CurrencyChoicePageTitle}"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand" />
+        </ContentView>
+    </Shell.TitleView>
+
+    <Shell.SearchHandler>
+        <views:CurrencySearchHandler
+            SearchBoxVisibility="Collapsible"
+            Currencies="{Binding Currencies}"
+            SelectedCurrency="{Binding SelectedItem, Mode=OneWayToSource}" />
+    </Shell.SearchHandler>
+    <CollectionView
+        ItemsSource="{Binding Currencies}"
+        SelectionMode="Single"
+        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+        SelectionChangedCommand="{Binding ItemSelection}"
+        VerticalOptions="FillAndExpand">
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <ContentView Padding="3">
+                    <Frame BackgroundColor="{StaticResource FrameBackgroundColor}">
+                        <Label Text="{Binding .}" HorizontalOptions="StartAndExpand" />
+                    </Frame>
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource MainColor}" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ContentView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    mc:Ignorable="d"
+    x:Class="expense.manager.Views.Pages.ExpenseByDatePage"
+    Padding="10"
+    BackgroundColor="{StaticResource MainColor}">
+
+    <Shell.NavBarIsVisible>False</Shell.NavBarIsVisible>
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <CollectionView
+                x:Name="CollectionView"
+                IsGrouped="True"
+                ItemsSource="{Binding GroupedExpenses}"
+                SelectionMode="Single"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                ItemTemplate="{StaticResource ExpenseCellTemplate}"
+                VerticalOptions="FillAndExpand">
+
+                <CollectionView.Header>
+                    <StackLayout
+                        Orientation="Horizontal"
+                        Padding="20"
+                        BackgroundColor="{StaticResource MainColor}">
+                        <StackLayout.Resources>
+                            <ResourceDictionary>
+                                <Style TargetType="Label">
+                                    <Setter Property="TextColor" Value="{StaticResource HeaderItemsColor}" />
+
+                                </Style>
+                            </ResourceDictionary>
+                        </StackLayout.Resources>
+                        <Label
+                            Text="{Binding Title}"
+                            FontSize="18"
+                            VerticalOptions="CenterAndExpand" />
+
+                        <StackLayout
+                            Spacing="10"
+                            Orientation="Horizontal"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="15">
+
+                            <ImageButton
+                                HorizontalOptions="FillAndExpand"
+                                Command="{Binding ChangeSelectedMonthCommand}"
+                                BackgroundColor="Transparent"
+                                IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
+                                Source="{FontImage FontFamily=MaterialFontFamily,
+                                                   Glyph={x:Static manager:IconFont.ArrowBack},
+                                                   Color={StaticResource HeaderItemsColor},
+                                                   Size=20}">
+
+                                <ImageButton.CommandParameter>
+                                    <x:Int32>-1</x:Int32>
+                                </ImageButton.CommandParameter>
+                            </ImageButton>
+
+                            <Label
+                                Text="{Binding ItemsContext.MonthId}"
+                                FontSize="18"
+                                VerticalOptions="CenterAndExpand" />
+
+                            <ImageButton
+                                BackgroundColor="Transparent"
+                                IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
+                                Command="{Binding ChangeSelectedMonthCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                Source="{FontImage FontFamily=MaterialFontFamily,
+                                                   Glyph={x:Static manager:IconFont.ArrowForward},
+                                                   Color={StaticResource HeaderItemsColor},
+                                                   Size=20}">
+
+                                <ImageButton.CommandParameter>
+                                    <x:Int32>1</x:Int32>
+                                </ImageButton.CommandParameter>
+
+                            </ImageButton>
+                        </StackLayout>
+
+
+
+                    </StackLayout>
+
+                </CollectionView.Header>
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ContentView Padding="10">
+                            <Label Text="{Binding CreationDate, StringFormat='{0:dd MMMM}'}" TextColor="{StaticResource CellItemsColor}" />
+                        </ContentView>
+
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+
+            </CollectionView>
+        </StackLayout>
+
+
+
+
+
+
+        <ImageButton
+            Padding="0"
+            AbsoluteLayout.LayoutBounds="0.97,0.97,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Command="{Binding AddItemCommand}"
+            IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
+            Source="{FontImage FontFamily=MaterialFontFamily,
+                               Glyph={x:Static manager:IconFont.AddCircle},
+                               Color={StaticResource SecondaryColor},
+                               Size=60}"
+            BackgroundColor="Transparent" />
+
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy, FallbackValue=True}"
+            Color="Red"
+            AbsoluteLayout.LayoutBounds=".5,.5,.1,.1"
+            AbsoluteLayout.LayoutFlags="All" />
+    </AbsoluteLayout>
+</ContentPage>

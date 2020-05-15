@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    BackgroundColor="{StaticResource MainColor}"
+    Padding="10"
+    x:Class="expense.manager.Views.Pages.ParametersPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundColor}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
+    <Shell.TitleView>
+        <ContentView Padding="10">
+            <Label
+                Text="{x:Static manager:AppContent.SettingsPageTitle}"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand" />
+        </ContentView>
+    </Shell.TitleView>
+    <StackLayout Spacing="6" Padding="3">
+        <Frame>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding NavigateToCurrencyChoice}" />
+            </Frame.GestureRecognizers>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{x:Static manager:AppContent.Currency}" />
+                <Label Text="{Binding CurrentCurrency}" HorizontalOptions="EndAndExpand" />
+
+
+            </StackLayout>
+        </Frame>
+
+        <Frame>
+
+            <Label Text="{x:Static manager:AppContent.About}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToAboutPage}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Frame>
+    </StackLayout>
+</ContentPage>

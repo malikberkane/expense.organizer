@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:manager="clr-namespace:expense.manager"
+    xmlns:views="clr-namespace:expense.manager.Views"
+    Title="{Binding CurrentTag.Name}"
+    Padding="10"
+    BackgroundColor="{StaticResource MainColor}"
+    x:Class="expense.manager.Views.Pages.TagRecapDetailedPage">
+
+
+    <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
+
+    <Shell.TitleView>
+        <ContentView Padding="10">
+            <Label
+                Text="{Binding CurrentTag.Name}"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand" />
+        </ContentView>
+    </Shell.TitleView>
+
+    <CollectionView
+        x:Name="CollectionView"
+        ItemsSource="{Binding Items}"
+        ItemSizingStrategy="MeasureAllItems"
+        SelectionMode="None"
+        VerticalOptions="FillAndExpand">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <SwipeView x:Name="mySwipeView">
+
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem
+                                Text="{x:Static manager:AppContent.Edit}"
+                                BackgroundColor="{StaticResource MainColor}"
+                                Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
+                                CommandParameter="{Binding .}" />
+                            <SwipeItem
+                                Text="{x:Static manager:AppContent.Untag}"
+                                BackgroundColor="{StaticResource MainColor}"
+                                Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
+                                CommandParameter="{Binding .}" />
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+
+                    <views:ExpenseCell />
+                </SwipeView>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+
+    </CollectionView>
+
+</ContentPage>

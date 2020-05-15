@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    x:Class="expense.manager.Views.Pages.SelectParentPage"
+    Padding="10"
+    BackgroundColor="{StaticResource MainColor}">
+
+    <Shell.TitleView>
+        <ContentView Padding="10">
+            <StackLayout Orientation="Horizontal">
+
+                <Label
+                    Text="{x:Static manager:AppContent.SelectParentPageTitle}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    VerticalOptions="CenterAndExpand" />
+
+                <Label
+                    Text="{x:Static manager:AppContent.None}"
+                    HorizontalOptions="EndAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    FontAttributes="Bold"
+                    FontSize="Medium">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NoParentCategoryCommand}" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+            </StackLayout>
+        </ContentView>
+    </Shell.TitleView>
+    <AbsoluteLayout>
+        <CollectionView
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            x:Name="CollectionView"
+            ItemsSource="{Binding Categories}"
+            ItemSizingStrategy="MeasureAllItems"
+            SelectedItem="{Binding SelectedCategory}"
+            SelectionMode="Single"
+            VerticalOptions="FillAndExpand">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <ContentView Padding="3" x:Name="myContent">
+                        <Frame BackgroundColor="Transparent">
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="18"
+                                    x:Name="CellLabel"
+                                    TextColor="{StaticResource CellItemsColor}" />
+
+
+                                <ImageButton
+                                    x:Name="subCategsButton"
+                                    HorizontalOptions="EndAndExpand"
+                                    Command="{Binding Source={x:Reference CollectionView}, Path=Parent.BindingContext.NavigateToChildrenListCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Source="{FontImage FontFamily=MaterialFontFamily,
+                                                       Glyph={x:Static manager:IconFont.SubdirectoryArrowRight},
+                                                       Color={StaticResource CellItemsColor},
+                                                       Size=30}"
+                                    BackgroundColor="Transparent" />
+
+
+                            </StackLayout>
+
+                        </Frame>
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal" />
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource SecondaryColor}" />
+                                        <Setter TargetName="CellLabel" Property="Label.TextColor" Value="White" />
+                                        <Setter TargetName="subCategsButton" Property="ImageButton.Source" Value="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.SubdirectoryArrowRight}, Color=White, Size=30}" />
+
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                    </ContentView>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <ImageButton
+            Padding="0"
+            AbsoluteLayout.LayoutBounds="0.97,0.97,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Command="{Binding ValidateParentCategoryCommand}"
+            Source="{FontImage FontFamily=MaterialFontFamily,
+                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Color={StaticResource SecondaryColor},
+                               Size=60}"
+            BackgroundColor="Transparent" />
+    </AbsoluteLayout>
+
+
+
+
+
+</ContentPage>

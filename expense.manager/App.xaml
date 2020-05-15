@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:manager="clr-namespace:expense.manager"
+    xmlns:views="clr-namespace:expense.manager.Views"
+    mc:Ignorable="d"
+    x:Class="expense.manager.App">
+    <Application.Resources>
+
+
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="Brandon_reg" />
+        </Style>
+
+
+        <Style TargetType="ContentPage">
+            <Setter Property="Visual" Value="Material" />
+        </Style>
+
+
+        <Style TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
+
+
+
+
+        <Color x:Key="MainColor">#EBE8E4</Color>
+        <Color x:Key="FrameBackgroundColor">White</Color>
+
+        <Color x:Key="CellItemsColor">#514242</Color>
+
+        <Color x:Key="HeaderItemsColor">#514242</Color>
+
+        <Color x:Key="SecondaryColor">#E85D4A</Color>
+
+
+        <DataTemplate x:Key="ExpenseCellTemplate">
+
+            <SwipeView x:Name="mySwipeView">
+
+                <SwipeView.LeftItems>
+                    <SwipeItems SwipeBehaviorOnInvoked="Auto">
+                        <SwipeItem
+                            Text="{x:Static manager:AppContent.Edit}"
+                            BackgroundColor="{StaticResource MainColor}"
+                            Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
+                            CommandParameter="{Binding .}" />
+                        <SwipeItem
+                            Text="{x:Static manager:AppContent.Delete}"
+                            BackgroundColor="{StaticResource MainColor}"
+                            Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
+                            CommandParameter="{Binding .}" />
+                    </SwipeItems>
+                </SwipeView.LeftItems>
+
+                <views:ExpenseCell />
+            </SwipeView>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="CategoryCellTemplate">
+
+            <SwipeView x:Name="mySwipeView">
+                <SwipeView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </SwipeView.GestureRecognizers>
+                <SwipeView.LeftItems>
+                    <SwipeItems SwipeBehaviorOnInvoked="Auto">
+                        <SwipeItem
+                            Text="{x:Static manager:AppContent.Edit}"
+                            BackgroundColor="{StaticResource MainColor}"
+                            Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
+                            CommandParameter="{Binding .}" />
+                        <SwipeItem
+                            Text="{x:Static manager:AppContent.Delete}"
+                            BackgroundColor="{StaticResource MainColor}"
+                            Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
+                            CommandParameter="{Binding .}" />
+                    </SwipeItems>
+                </SwipeView.LeftItems>
+                <ContentView
+                    Padding="3"
+                    BackgroundColor="{StaticResource MainColor}"
+                    InputTransparent="True">
+                    <Frame
+                        Padding="5,2.5"
+                        x:Name="myFrame"
+                        BackgroundColor="{StaticResource FrameBackgroundColor}">
+                        <StackLayout Margin="15">
+
+                            <StackLayout Orientation="Horizontal">
+
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="18"
+                                    TextColor="{StaticResource CellItemsColor}" />
+
+                                <Image
+                                    HorizontalOptions="EndAndExpand"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    Source="{FontImage FontFamily=MaterialFontFamily,
+                                                       Glyph={x:Static manager:IconFont.SubdirectoryArrowRight},
+                                                       Color={StaticResource CellItemsColor},
+                                                       Size=20}"
+                                    BackgroundColor="Transparent" />
+
+
+                            </StackLayout>
+
+                            <BoxView
+                                BackgroundColor="Gray"
+                                HeightRequest="1"
+                                HorizontalOptions="FillAndExpand" />
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label
+                                    Text="{Binding SpentBudgetRatio}"
+                                    FontSize="12"
+                                    TextColor="Black"
+                                    IsVisible="{Binding HasBudget}" />
+
+
+                                <Label
+                                    Text="{Binding AmmountFormatted}"
+                                    TextColor="{StaticResource CellItemsColor}"
+                                    HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+
+
+                        </StackLayout>
+
+
+                    </Frame>
+                </ContentView>
+
+            </SwipeView>
+
+
+        </DataTemplate>
+
+
+        <manager:NegateConverter x:Key="NegateConverter" />
+
+
+
+    </Application.Resources>
+
+
+</Application>

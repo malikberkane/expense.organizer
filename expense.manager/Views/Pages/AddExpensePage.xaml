@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:manager="clr-namespace:expense.manager"
+    mc:Ignorable="d"
+    Padding="10"
+    BackgroundColor="{StaticResource MainColor}"
+    Title="{Binding Title}"
+    x:Name="CurrentPage"
+    x:Class="expense.manager.Views.Pages.AddExpensePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <manager:NumericToStringDisplayConverter x:Key="NumericConverter" />
+            <manager:NullToPlaceholderConverter x:Key="NullToPlaceholderConverter" />
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource CellItemsColor}" />
+            </Style>
+
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundColor}" />
+
+
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
+
+    <Shell.TitleView>
+        <ContentView Padding="10">
+            <Label
+                Text="{Binding Title}"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand" />
+        </ContentView>
+    </Shell.TitleView>
+
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}" IconOverride="back.png" />
+    </Shell.BackButtonBehavior>
+    <AbsoluteLayout>
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <StackLayout
+                Spacing="6"
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All">
+
+                <Frame>
+                    <Entry Placeholder="{x:Static manager:AppContent.ExpenseLabelPlaceholder}" Text="{Binding Expense.ExpenseLabel}" />
+                </Frame>
+
+
+                <Frame>
+                    <manager:NumericInput
+                        Keyboard="Numeric"
+                        AllowFraction="True"
+                        Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
+                        Text="{Binding Expense.Ammount, Converter={StaticResource NumericConverter}}" />
+                </Frame>
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{x:Static manager:AppContent.ParentCategoryLabel}" />
+                        <StackLayout
+                            HorizontalOptions="EndAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding ParentCategory, Converter={StaticResource NullToPlaceholderConverter}, ConverterParameter='{x:Static manager:AppContent.None}'}" FontAttributes="Bold" />
+                            <Image BackgroundColor="Transparent" Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.KeyboardArrowRight}, Color={StaticResource CellItemsColor}, Size=20}" />
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectParentCommand}" />
+
+                            </StackLayout.GestureRecognizers>
+
+
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            Text="Date :"
+                            TextColor="{StaticResource CellItemsColor}"
+                            VerticalOptions="CenterAndExpand" />
+                        <DatePicker
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="EndAndExpand"
+                            Date="{Binding Expense.CreationDate}" />
+                    </StackLayout>
+                </Frame>
+
+                <Button
+                    Text="{x:Static manager:AppContent.AddTagsLabel}"
+                    HorizontalOptions="Start"
+                    Command="{Binding AddTagsCommand}" />
+
+                <ContentView Padding="10,0">
+                    <Label Text="{x:Static manager:AppContent.TagsLabel}" TextColor="{StaticResource CellItemsColor}" />
+                </ContentView>
+
+                <CollectionView
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding LinkedTags}"
+                    SelectionMode="None"
+                    EmptyView="{x:Static manager:AppContent.NoTagsLinked}"
+                    HeightRequest="100">
+
+
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+                            <ContentView Padding="10">
+                                <ContentView.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference CurrentPage}, Path=BindingContext.RemoveTagCommand}" CommandParameter="{Binding .}" />
+                                </ContentView.GestureRecognizers>
+                                <Frame BackgroundColor="{StaticResource SecondaryColor}">
+
+                                    <Label
+                                        FontSize="17"
+                                        Text="{Binding Name, StringFormat='#{0}'}"
+                                        TextColor="White"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand" />
+                                </Frame>
+
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+        <ImageButton
+            Padding="0"
+            AbsoluteLayout.LayoutBounds="0.97,0.97,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Command="{Binding AddItemCommand}"
+            Source="{FontImage FontFamily=MaterialFontFamily,
+                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Color={StaticResource SecondaryColor},
+                               Size=60}"
+            BackgroundColor="Transparent" />
+    </AbsoluteLayout>
+
+
+</ContentPage>
