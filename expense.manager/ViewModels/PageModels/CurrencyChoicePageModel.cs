@@ -1,9 +1,7 @@
 ﻿using expense.manager.ViewModels.Base;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using Xamarin.Forms;
-using expense.manager.Services;
 
 namespace expense.manager.ViewModels.PageModels
 {
@@ -38,7 +36,7 @@ namespace expense.manager.ViewModels.PageModels
                                         }
 
 
-                                        if(await NavigationService.DisplayYesNoMessage($"Select{SelectedItem} as currency?"))
+                                        if(await NavigationService.DisplayYesNoMessage($"{AppContent.Select} {SelectedItem}?"))
                                         {
                                             AppPreferences.SetCurrentCurrency(SelectedItem);
                                             MessagingService.Send(MessagingKeys.CurrencyChange);

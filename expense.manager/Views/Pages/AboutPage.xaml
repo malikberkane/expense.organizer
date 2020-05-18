@@ -39,7 +39,10 @@
 
         </StackLayout>
 
-        <Button Margin="0" Text="{x:Static manager:AppContent.GoToSourceCode}" />
+        <Button
+            Margin="0"
+            Text="{x:Static manager:AppContent.GoToSourceCode}"
+            Command="{Binding GoToGithubPageCommand}" />
     </StackLayout>
 
 </ContentPage>

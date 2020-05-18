@@ -279,6 +279,9 @@
   <data name="Restaurant" xml:space="preserve">
     <value>Restaurant</value>
   </data>
+  <data name="Select" xml:space="preserve">
+    <value>Sélectionner</value>
+  </data>
   <data name="SelectParentPageTitle" xml:space="preserve">
     <value>Catégorie parent</value>
   </data>

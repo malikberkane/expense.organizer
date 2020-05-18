@@ -547,6 +547,15 @@ namespace expense.manager {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parent category.
         /// </summary>
         public static string SelectParentPageTitle {
