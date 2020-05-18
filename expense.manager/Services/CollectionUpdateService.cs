@@ -16,17 +16,7 @@ namespace expense.manager.Services
 
         public IMessagingService MessagingService => DependencyService.Get<IMessagingService>();
 
-        public async Task UpdateAmmountSpentForTags(ObservableCollection<TagVm> items)
-        {
-          
-            foreach (var item in items)
-            {
-                
-                item.AmmountSpent = await Service.GetAmmountSpentForTag(item.Id);
-                
-            }
-        }
-      
+
 
 
 

@@ -14,7 +14,6 @@ namespace expense.manager.Data
 
         public DbSet<BudgetData> Budgets { get; set; }
 
-        public DbSet<SumForCategoryData> Sums { get; set; }
 
 
 
@@ -37,8 +36,7 @@ namespace expense.manager.Data
         {
             modelBuilder.Entity<ExpenseTagRelationData>()
                 .HasKey(c => new { c.TagId, c.ExpenseId });
-            modelBuilder.Entity<SumForCategoryData>()
-             .HasKey(c => new { c.CategoryId, c.MonthId });
+
             
             modelBuilder.Entity<ExpenseData>()
                 .HasKey(c => c.Id);
@@ -46,7 +44,6 @@ namespace expense.manager.Data
                 .HasKey(c => c.Id);
             modelBuilder.Entity<BudgetData>()
                 .HasKey(c => new { c.CategoryId, c.MonthId });
-
 
             var initialDataset = SeedProvider.GetDefaultCategories();
 
@@ -142,6 +139,7 @@ namespace expense.manager.Data
             if (Device.RuntimePlatform == Device.UWP)
             {
                 optionsBuilder.UseSqlite($"Filename=test.db");
+                
             }
             else
             {

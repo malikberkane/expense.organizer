@@ -7,7 +7,7 @@ namespace expense.manager.ViewModels
     public class CategoryVm : BaseViewModel
     {
         private int _id;
-        private int _parentId;
+        private CategoryVm _parentCategory;
         private List<CategoryVm> _children;
         private string _name;
         private double? _ammountSpent;
@@ -24,10 +24,10 @@ namespace expense.manager.ViewModels
             }
         }
 
-        public int ParentId
+        public CategoryVm ParentCategory
         {
-            get => _parentId;
-            set => SetProperty(ref _parentId, value);
+            get => _parentCategory;
+            set => SetProperty(ref _parentCategory, value);
         }
 
         public List<CategoryVm> Children

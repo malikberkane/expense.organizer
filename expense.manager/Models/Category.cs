@@ -5,7 +5,6 @@ namespace expense.manager.Models
     public class Category
     {
         public int Id { get; set; }
-        public int ParentId { get; set; }
 
         public string Name { get; set; }
         public double? AmmountSpent { get; set; }
@@ -14,6 +13,11 @@ namespace expense.manager.Models
 
 
         public double RecurringBudget { get; set; }
+
+
+        public ICollection<Category> ChildrenCategories { get; set; }
+
+        public Category ParentCategory { get; set; }
 
 
         public override bool Equals(object obj)
@@ -27,6 +31,9 @@ namespace expense.manager.Models
             return false;
         }
 
-
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

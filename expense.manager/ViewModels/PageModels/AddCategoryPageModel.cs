@@ -43,9 +43,9 @@ namespace expense.manager.ViewModels.PageModels
 
                 SpecifiedBudget = await Service.GetSpecifiedBudget(Category.Map<CategoryVm, Category>(), CurrentMonthId);
 
-                if (Category.ParentId != 0)
+                if (Category.ParentCategory != null)
                 {
-                    var currentParentCategory = await Service.GetCategory(Category.ParentId);
+                    var currentParentCategory = await Service.GetCategory(Category.ParentCategory.Id);
 
                     ParentCategory = currentParentCategory?.Map<Category, CategoryVm>();
                 }
@@ -66,7 +66,7 @@ namespace expense.manager.ViewModels.PageModels
              {
                
                  ParentCategory = item;
-                 Category.ParentId = ParentCategory?.Id ?? 0;
+                 Category.ParentCategory = item;
              });
 
 

@@ -21,7 +21,6 @@ namespace expense.manager.Services
         Task<IEnumerable<Tag>> GetTags(bool computeAmmounts = true);
         Task<int> AddTag(Tag newTag);
         Task<bool> DeleteTag(Tag newTag);
-        Task<double?> GetAmmountSpentForTag(int id);
         Task<IEnumerable<Expense>> GetExpensesByTag(int tagId);
         Task<IEnumerable<Tag>> GetTagsForExpense(int expenseId);
         Task UntagExpense(Tag tag, Expense expense);

@@ -19,7 +19,7 @@ namespace expense.manager.ViewModels.PageModels
             var selectParentContext = Parameter as SelectParentParameter;
 
             CurrentParentContext = selectParentContext;
-            Categories = selectParentContext.AllCategories.Where(categ => categ.ParentId == selectParentContext.LevelId).Select(c=>c.Map<Category,CategoryVm>()).ToList();
+            Categories = selectParentContext.AllCategories.Where(categ => categ.ParentCategory.Id == selectParentContext.LevelId).Select(c=>c.Map<Category,CategoryVm>()).ToList();
 
             return base.LoadData();
         }

@@ -56,7 +56,7 @@ namespace expense.manager.ViewModels.PageModels
                 await NavigationService.NavigateTo<AddCategoryPageModel>(
                     (new CategoryVm
                                         {
-                        ParentId = ItemsContext.Category.Id 
+                        ParentCategory = ItemsContext.Category 
                     }
                     , ItemsContext.MonthId));
 
