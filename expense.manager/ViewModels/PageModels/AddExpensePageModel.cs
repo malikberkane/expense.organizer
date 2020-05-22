@@ -16,12 +16,13 @@ namespace expense.manager.ViewModels.PageModels
     public class AddExpensePageModel : BasePageModel
     {
         public ExpenseVm Expense { get; set; }
-        private CategoryVm parentCategory;
+        private CategoryVm _parentCategory;
 
-        public ICollection<TagVm> LinkedTags { get => linkedTags; set { SetProperty(ref linkedTags, value); } }
+        public ICollection<TagVm> LinkedTags { get => _linkedTags; set => SetProperty(ref _linkedTags, value);
+        }
 
 
-        public CategoryVm ParentCategory { get => parentCategory; set => SetProperty(ref parentCategory, value); }
+        public CategoryVm ParentCategory { get => _parentCategory; set => SetProperty(ref _parentCategory, value); }
 
         public override async Task LoadData()
         {
@@ -114,15 +115,21 @@ namespace expense.manager.ViewModels.PageModels
 
         public Command SelectParentCommand => _selectParentCommand ??= new Command(async () =>
             {
-                var allCategories = (await Service.GetAllCategories())?.Select(c=>c.Map<Category,CategoryVm>());
-                await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() {AllCategories = allCategories?.ToList() });
+                var allCategories = (await Service.GetAllCategories())?.Select(c=>c.Map<Category,CategoryVm>())?.ToList();
+
+                if (allCategories == null || !allCategories.Any())
+                {
+                    await NavigationService.DisplayAlert(AppContent.NoCategoriesAlert);
+                    return;
+                }
+                await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() {AllCategories = allCategories });
             }
         );
 
 
 
         private Command _addTagsCommand;
-        private ICollection<TagVm> linkedTags;
+        private ICollection<TagVm> _linkedTags;
 
         public Command AddTagsCommand => _addTagsCommand ??= new Command(async () =>
             {

@@ -72,6 +72,12 @@ namespace expense.manager.ViewModels.PageModels
         public Command SelectParentCommand => _selectParentCommand ??= new Command(async () =>
             {
                 var allCategories = (await Service.GetAllCategories())?.Select(c => c.Map<Category, CategoryVm>()).ToList();
+
+                if (allCategories == null || !allCategories.Any())
+                {
+                    await NavigationService.DisplayAlert(AppContent.NoCategoriesAlert);
+                    return;
+                }
                 await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter {UnselectableCategory = Category, AllCategories = allCategories });
             }
         );

@@ -255,6 +255,9 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="NoCategoriesAlert" xml:space="preserve">
+    <value>There are no existing categories. You should create categories first.</value>
+  </data>
   <data name="None" xml:space="preserve">
     <value>None</value>
   </data>

@@ -475,6 +475,15 @@ namespace expense.manager.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no existing categories. You should create categories first..
+        /// </summary>
+        public static string NoCategoriesAlert {
+            get {
+                return ResourceManager.GetString("NoCategoriesAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         public static string None {

@@ -10,6 +10,7 @@ using expense.manager.Models;
 using expense.manager.Utils;
 using MethodTimer;
 using Newtonsoft.Json;
+using Xamarin.Forms.Internals;
 
 namespace expense.manager.Services
 {
@@ -231,10 +232,11 @@ namespace expense.manager.Services
 
             }
 
-            categories.ForEach(n=>
+            foreach (var category in categories)
             {
-                n.ParentCategory = parentCategory;
-            });
+                category.ParentCategory = parentCategory;
+            }
+            
 
               
 
