@@ -72,9 +72,13 @@ namespace expense.manager.Data
         public Task DeleteExpenses(Expression<Func<ExpenseData, bool>> predicate)
         {
             var expensesToDelete = _currentContext.Expenses.Where(predicate);
-            if (expensesToDelete.Any())
+
+            var test= expensesToDelete.Count();
+
+            if (!expensesToDelete.Any()) return Task.CompletedTask;
+            foreach (var expenseData in expensesToDelete)
             {
-                _currentContext.RemoveRange(expensesToDelete);
+                DeleteExpense(expenseData);
 
             }
             return Task.CompletedTask;
@@ -167,13 +171,11 @@ namespace expense.manager.Data
 
             }
         }
-        public async Task<CategoryData> GetCategory(int categoryId)
+        public  Task<CategoryData> GetCategory(int categoryId)
         {
-            
-            {
-                return await _currentContext.ExpenseCategories.SingleAsync(t => t.Id == categoryId);
 
-            }
+            return Task.FromResult( _currentContext.ExpenseCategories.SingleOrDefault(t => t.Id == categoryId));
+
         }
         public Task DeleteCategory(CategoryData category)
         {
@@ -236,9 +238,7 @@ namespace expense.manager.Data
         public async Task AddOrUpdateSpecialBuget(CategoryData category, string monthId, double newBudget)
         {
 
-            
-            {
-                if (!_currentContext.Budgets.Any(n => n.CategoryId == category.Id && n.MonthId == monthId))
+            if (!_currentContext.Budgets.Any(n => n.CategoryId == category.Id && n.MonthId == monthId))
                 {
 
                     await _currentContext.Budgets.AddAsync(new BudgetData
@@ -260,8 +260,22 @@ namespace expense.manager.Data
 
                 
 
+            
+
+        }
+
+
+        public Task DeleteSpecialBudget(CategoryData category, string monthId)
+        {
+            var budgetToDelete =
+                _currentContext.Budgets.SingleOrDefault(b => b.CategoryId == category.Id && b.MonthId == monthId);
+
+            if (budgetToDelete != null)
+            {
+                _currentContext.Remove(budgetToDelete);
             }
 
+            return Task.CompletedTask;
         }
         public async Task PersistPreviousMonthBudget(string monthId)
         {

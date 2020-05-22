@@ -11,6 +11,8 @@
     Padding="10"
     BackgroundColor="{StaticResource MainColor}">
 
+    <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
+
     <Shell.TitleView>
         <ContentView Padding="10">
             <StackLayout Orientation="Horizontal">
@@ -23,6 +25,7 @@
 
                 <Label
                     Text="{x:Static resources:AppContent.None}"
+                    Margin="10,0"
                     HorizontalOptions="EndAndExpand"
                     VerticalOptions="CenterAndExpand"
                     FontAttributes="Bold"

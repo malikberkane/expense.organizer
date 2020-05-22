@@ -10,7 +10,6 @@ using expense.manager.Models;
 using expense.manager.Utils;
 using MethodTimer;
 using Newtonsoft.Json;
-using Xamarin.Forms.Internals;
 
 namespace expense.manager.Services
 {
@@ -105,9 +104,19 @@ namespace expense.manager.Services
     
         public async Task AddOrUpdateSpecialBudget(Category category, double budget, string monthId)
         {
+
             using var unitOfWork= new UnitOfWork(new ExpenseManagerContext());
+
             await unitOfWork.Repository.AddOrUpdateSpecialBuget(category.Map<Category, CategoryData>(),
                 monthId, budget); 
+            unitOfWork.Complete();
+        }
+
+        public async Task DeleteSpecialBudget(Category category, string monthId)
+        {
+            using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
+
+            await unitOfWork.Repository.DeleteSpecialBudget(category.Map<Category, CategoryData>(), monthId);
             unitOfWork.Complete();
         }
 
@@ -121,7 +130,7 @@ namespace expense.manager.Services
         public async Task UpdateParentRecurringBudgets(Category parentCateg, double? oldBudget, double newBudget)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
-            var parentCategs = await GetParentCateg(parentCateg);
+            var parentCategs = await GetParentCateg(parentCateg, includeCurrent:true);
 
             foreach (var categ in parentCategs)
             {
@@ -146,8 +155,8 @@ namespace expense.manager.Services
         public async Task UpdateParentCategsBudgets(Category oldParentCateg, Category newParentCateg, double budgetToTransfer)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
-            var oldParentCategs = await GetParentCateg(oldParentCateg);
-            var newParentCategs = await GetParentCateg(newParentCateg);
+            var oldParentCategs = await GetParentCateg(oldParentCateg, includeCurrent:true);
+            var newParentCategs = await GetParentCateg(newParentCateg, includeCurrent:true);
 
 
             foreach (var categ in oldParentCategs)
@@ -336,12 +345,12 @@ namespace expense.manager.Services
             return alltags;
         }
 
-   
-        private async Task<IEnumerable<Category>> GetParentCateg(Category category)
+
+        private async Task<IEnumerable<Category>> GetParentCateg(Category category, bool includeCurrent = false)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
             var result = new List<Category>();
-            var currentId = category.ParentCategory?.Id ?? default;
+            var currentId = (includeCurrent ? category?.Id: category.ParentCategory?.Id) ?? default;
             while (currentId != 0)
             {
                 var currentCateg = await unitOfWork.Repository.GetCategory(currentId);
@@ -369,6 +378,8 @@ namespace expense.manager.Services
                 foreach (var categ in flattenedChildren)
                 {
                     await unitOfWork.Repository.DeleteCategory(categ.Map<Category, CategoryData>());
+                    await unitOfWork.Repository.DeleteExpenses(n => n.CategoryId == categ.Id);
+
                 }
 
                 var oldParentCategs = await GetParentCateg(categoryToDelete);
@@ -386,8 +397,10 @@ namespace expense.manager.Services
 
 
                 await unitOfWork.Repository.DeleteExpenses(n => n.CategoryId == categoryToDelete.Id);
+                unitOfWork.Complete();
 
                 return true;
+
 
             }
             catch (Exception)
@@ -395,10 +408,9 @@ namespace expense.manager.Services
 
                 return false;
             }
-            finally
-            {
-                unitOfWork.Complete();
-            }
+            
+
+
         }
     }
 }

@@ -57,15 +57,13 @@ namespace expense.manager.ViewModels.PageModels
 
         private Command editItemCommand;
 
-        public Command EditItemCommand => editItemCommand ?? (
-                                             editItemCommand = new Command<T>(async (item) => await EditItemImpl(item)));
+        public Command EditItemCommand => editItemCommand ??= new Command<T>(async (item) => await EditItemImpl(item));
 
         protected  abstract Task EditItemImpl(T item);
 
         private Command _deleteItemCommand;
 
-        public Command DeleteItemCommand => _deleteItemCommand ?? (
-                                             _deleteItemCommand = new Command<T>(async (item) =>  await DeleteItemImpl(item)));
+        public Command DeleteItemCommand => _deleteItemCommand ??= new Command<T>(async (item) =>  await DeleteItemImpl(item));
 
         protected  abstract Task DeleteItemImpl(T item);
 
@@ -106,8 +104,8 @@ namespace expense.manager.ViewModels.PageModels
 
         protected override void BeforePop()
         {
-            MessagingCenter.Unsubscribe<MessagingService, BaseViewModel>(this, MessagingKeys.AddItemKey);
-            MessagingCenter.Unsubscribe<MessagingService, BaseViewModel>(this, MessagingKeys.DeleteItemKey);
+            MessagingCenter.Unsubscribe<MessagingService>(this, MessagingKeys.AddItemKey);
+            MessagingCenter.Unsubscribe<MessagingService>(this, MessagingKeys.DeleteItemKey);
 
             MessagingCenter.Unsubscribe<MessagingService>(this, MessagingKeys.CurrencyChange);
 

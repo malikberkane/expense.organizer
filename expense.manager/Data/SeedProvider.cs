@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using expense.manager.Resources;
 
 namespace expense.manager.Data
@@ -13,29 +11,33 @@ namespace expense.manager.Data
         {
             var result = new List<InitialCategory>()
             {
-                InitialCategory.Create(AppContent.Food,
-                    new List<InitialCategory>()
-                    {
-                        InitialCategory.Create(AppContent.Grossery),
-                        InitialCategory.Create(AppContent.Restaurant)
-                    }
+                InitialCategory.Create(AppContent.Food
+                //,
+                //    new List<InitialCategory>()
+                //    {
+                //        InitialCategory.Create(AppContent.Grossery),
+                //        InitialCategory.Create(AppContent.Restaurant)
+                //    }
+
+                //
+                ),
+                InitialCategory.Create(AppContent.Entertainment
+                    //,
+                    //new List<InitialCategory>()
+                    //{
+                    //    InitialCategory.Create(AppContent.Movies),
+                    //    InitialCategory.Create(AppContent.Bars)
+                    //}
 
                 ),
-                InitialCategory.Create(AppContent.Entertainment,
-                    new List<InitialCategory>()
-                    {
-                        InitialCategory.Create(AppContent.Movies),
-                        InitialCategory.Create(AppContent.Bars)
-                    }
 
-                ),
-
-                InitialCategory.Create(AppContent.Ponctual,
-                    new List<InitialCategory>()
-                    {
-                        InitialCategory.Create(AppContent.Trips),
-                        InitialCategory.Create(AppContent.Gifts)
-                    }
+                InitialCategory.Create(AppContent.Ponctual
+                //    ,
+                //    new List<InitialCategory>()
+                //    {
+                //        InitialCategory.Create(AppContent.Trips),
+                //        InitialCategory.Create(AppContent.Gifts)
+                //    }
 
                 ),
 

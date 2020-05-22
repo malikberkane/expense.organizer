@@ -18,7 +18,7 @@ namespace expense.manager.ViewModels.Base
         public Page CurrentPage { get; set; }
         public object Parameter { get; set; }
 
-        bool _isBusy = false;
+        bool _isBusy;
         public bool IsBusy
         {
             get => _isBusy;
@@ -76,7 +76,7 @@ namespace expense.manager.ViewModels.Base
                                          );
 
 
-        protected virtual Task NavigateBackImpl(bool modal = false)
+        public virtual Task NavigateBackImpl(bool modal = false)
         {
             return CleanPopAsync(modal);
         }

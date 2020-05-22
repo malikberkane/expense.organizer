@@ -34,6 +34,7 @@ namespace expense.manager.Services
         IEnumerable<Currency> GetCurrencies();
         Task<Currency> GetCurrency(string code);
         Task<double?> GetSpecifiedBudget(Category category, string monthId);
+        Task DeleteSpecialBudget(Category category, string monthId);
         Task PersistPreviousMonthBudget(string monthId);
     }
 }

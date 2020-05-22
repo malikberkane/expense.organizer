@@ -95,7 +95,7 @@ namespace expense.manager.ViewModels.PageModels
             }
             else if (item is CategoryVm categ && await NavigationService.DisplayYesNoMessage(AppContent.DeleteCategoryConfirmation))
             {
-                await Service.DeleteCategory(categ.Map<CategoryVm, Category>());
+                await Task.Run(() => EnsureIsBusy(() => Service.DeleteCategory(categ.Map<CategoryVm, Category>())));
 
                 MessagingService.Send(MessagingKeys.DeleteItemKey);
             }
@@ -289,6 +289,7 @@ namespace expense.manager.ViewModels.PageModels
                 else
                 {
                     Title = $"{sum:0.##} {AppPreferences.CurrentCurrency?.symbol}";
+                    BudgetRatioInfo = null;
 
                 }
             }

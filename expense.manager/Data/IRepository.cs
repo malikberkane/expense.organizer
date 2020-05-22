@@ -21,6 +21,8 @@ namespace expense.manager.Data
         Task<IEnumerable<CategoryData>> GetAllCategories();
 
         Task DeleteExpenses(Expression<Func<ExpenseData, bool>> predicate);
+
+        Task DeleteSpecialBudget(CategoryData category, string monthId);
         Task<IEnumerable<TagData>> GetAllTags();
         Task<CategoryData> GetCategory(int categoryId);
         Task<IEnumerable<ExpenseData>> GetExpenseFromTagAsync(int tagId);

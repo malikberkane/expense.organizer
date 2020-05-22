@@ -18,7 +18,7 @@ namespace expense.manager.ViewModels.PageModels
             var result = new List<BaseViewModel>();
 
             var expenses = (await Service.GetExpensesRecap(ItemsContext.MonthId, -1)).Select(n => n.Map<Expense, ExpenseVm>());
-
+            var test = expenses.Count();
             if (expenses != null && expenses.Any())
             {
                 result.AddRange(expenses);

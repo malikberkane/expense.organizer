@@ -64,8 +64,16 @@ namespace expense.manager.ViewModels.PageModels
 
                 if (SpecifiedBudget.HasValue && InitialSpecialBudget!=SpecifiedBudget)
                 {
-                    await Service.AddOrUpdateSpecialBudget(Category.Map<CategoryVm, Category>(), SpecifiedBudget.Value,
-                        CurrentMonthId);
+                    if (InitialSpecialBudget.GetValueOrDefault() != 0 && SpecifiedBudget.Value == 0)
+                    {
+                        await Service.DeleteSpecialBudget(Category.Map<CategoryVm, Category>(), CurrentMonthId);
+                    }
+                    else
+                    {
+                        await Service.AddOrUpdateSpecialBudget(Category.Map<CategoryVm, Category>(), SpecifiedBudget.Value,
+                            CurrentMonthId);
+                    }
+        
                 }
 
 

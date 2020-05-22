@@ -110,7 +110,7 @@
                                                     Source="{FontImage FontFamily=MaterialFontFamily,
                                                                        Glyph={x:Static fonts:IconFont.ArrowBack},
                                                                        Color={StaticResource HeaderItemsColor},
-                                                                       Size=20}">
+                                                                       Size=30}">
 
                                                     <ImageButton.CommandParameter>
                                                         <x:Int32>-1</x:Int32>
@@ -129,7 +129,7 @@
                                                     Source="{FontImage FontFamily=MaterialFontFamily,
                                                                        Glyph={x:Static fonts:IconFont.ArrowForward},
                                                                        Color={StaticResource HeaderItemsColor},
-                                                                       Size=20}">
+                                                                       Size=30}">
 
                                                     <ImageButton.CommandParameter>
                                                         <x:Int32>1</x:Int32>
