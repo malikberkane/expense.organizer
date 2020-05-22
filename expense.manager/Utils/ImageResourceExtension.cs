@@ -3,7 +3,7 @@ using System.Reflection;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace expense.manager
+namespace expense.manager.Utils
 {
     [ContentProperty(nameof(Source))]
     public class ImageResourceExtension : IMarkupExtension

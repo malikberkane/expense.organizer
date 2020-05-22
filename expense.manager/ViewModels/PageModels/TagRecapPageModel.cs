@@ -1,11 +1,12 @@
 ﻿using expense.manager.Mapping;
 using expense.manager.Models;
 using expense.manager.Services;
-using expense.manager.ViewModels.Base;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using expense.manager.Resources;
+using expense.manager.Utils;
 using Xamarin.Forms;
 
 namespace expense.manager.ViewModels.PageModels

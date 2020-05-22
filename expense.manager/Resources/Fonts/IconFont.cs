@@ -1,6 +1,7 @@
 ﻿using Xamarin.Forms;
+
 [assembly: ExportFont("MaterialFontFamily.ttf")]
-namespace expense.manager
+namespace expense.manager.Resources.Fonts
 {
 
 	static class IconFont

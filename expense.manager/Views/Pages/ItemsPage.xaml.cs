@@ -1,9 +1,4 @@
-﻿using System;
-using System.ComponentModel;
-using expense.manager.ViewModels;
-using expense.manager.ViewModels.Base;
-using expense.manager.ViewModels.PageModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace expense.manager.Views.Pages
 {

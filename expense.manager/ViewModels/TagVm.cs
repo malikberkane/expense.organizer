@@ -1,4 +1,5 @@
-﻿using expense.manager.ViewModels.Base;
+﻿using expense.manager.Utils;
+using expense.manager.ViewModels.Base;
 
 namespace expense.manager.ViewModels
 {

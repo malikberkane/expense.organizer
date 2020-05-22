@@ -1,11 +1,9 @@
-﻿using expense.manager.ViewModels;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Text;
+using expense.manager.ViewModels;
 using Xamarin.Forms;
 
-namespace expense.manager
+namespace expense.manager.Converters
 {
     public class NullToPlaceholderConverter : IValueConverter
     {

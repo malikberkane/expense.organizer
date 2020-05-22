@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Shell
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
-    xmlns:local="clr-namespace:expense.manager.Views.Pages"
     xmlns:pagemodels="clr-namespace:expense.manager.ViewModels.PageModels"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
+    xmlns:utils="clr-namespace:expense.manager.Utils;assembly=expense.manager"
     Title="expense.manager"
     x:Class="expense.manager.AppShell">
 
@@ -34,7 +35,7 @@
 
 
     <TabBar>
-        <Tab Title="{x:Static manager:AppContent.ByCategTabTitle}" Icon="{manager:ImageResource Source=expense.manager.categ_icon.png}">
+        <Tab Title="{x:Static resources:AppContent.ByCategTabTitle}" Icon="{utils:ImageResource Source=expense.manager.categ_icon.png}">
             <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}">
                 <ShellContent.BindingContext>
                     <pagemodels:ItemsPageModel x:Name="MainRecapPageModel" />
@@ -42,7 +43,7 @@
                 </ShellContent.BindingContext>
             </ShellContent>
         </Tab>
-        <Tab Title="{x:Static manager:AppContent.ByDateTabTitle}" Icon="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.Event}}">
+        <Tab Title="{x:Static resources:AppContent.ByDateTabTitle}" Icon="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.Event}}">
             <ShellContent ContentTemplate="{DataTemplate local:ExpenseByDatePage}">
                 <ShellContent.BindingContext>
                     <pagemodels:ExpenseByDatePageModel x:Name="ExpenseByDatePageModel" />
@@ -51,7 +52,7 @@
             </ShellContent>
         </Tab>
 
-        <Tab Title="{x:Static manager:AppContent.ByTagTabTitle}" Icon="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.LabelOutline}}">
+        <Tab Title="{x:Static resources:AppContent.ByTagTabTitle}" Icon="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.LabelOutline}}">
 
 
             <ShellContent ContentTemplate="{DataTemplate local:TagRecapPage}">

@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:views="clr-namespace:expense.manager.Views;assembly=expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
     mc:Ignorable="d"
     x:Class="expense.manager.Views.Pages.ItemsPage"
     x:Name="BrowseItemsPage"
@@ -14,7 +15,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <manager:CategoryOrExpenseCellTemplateSelector
+            <views:CategoryOrExpenseCellTemplateSelector
                 x:Key="CategoryOrExpenseCellTemplateSelector"
                 ExpenseTemplate="{StaticResource ExpenseCellTemplate}"
                 CategoryTemplate="{StaticResource CategoryCellTemplate}" />
@@ -93,7 +94,7 @@
                                                 BackgroundColor="Transparent"
                                                 HorizontalOptions="Start"
                                                 Source="{FontImage FontFamily=MaterialFontFamily,
-                                                                   Glyph={x:Static manager:IconFont.Home},
+                                                                   Glyph={x:Static fonts:IconFont.Home},
                                                                    Color={StaticResource SecondaryColor},
                                                                    Size=25}" />
 
@@ -108,7 +109,7 @@
                                                     BackgroundColor="Transparent"
                                                     IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
                                                     Source="{FontImage FontFamily=MaterialFontFamily,
-                                                                       Glyph={x:Static manager:IconFont.ArrowBack},
+                                                                       Glyph={x:Static fonts:IconFont.ArrowBack},
                                                                        Color={StaticResource HeaderItemsColor},
                                                                        Size=20}">
 
@@ -127,7 +128,7 @@
                                                     IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
                                                     Command="{Binding ChangeSelectedMonthCommand}"
                                                     Source="{FontImage FontFamily=MaterialFontFamily,
-                                                                       Glyph={x:Static manager:IconFont.ArrowForward},
+                                                                       Glyph={x:Static fonts:IconFont.ArrowForward},
                                                                        Color={StaticResource HeaderItemsColor},
                                                                        Size=20}">
 
@@ -141,7 +142,7 @@
                                                 BackgroundColor="Transparent"
                                                 Command="{Binding NavigateToSettings}"
                                                 Source="{FontImage FontFamily=MaterialFontFamily,
-                                                                   Glyph={x:Static manager:IconFont.Settings},
+                                                                   Glyph={x:Static fonts:IconFont.Settings},
                                                                    Color={StaticResource SecondaryColor},
                                                                    Size=25}" />
 
@@ -172,13 +173,12 @@
             AbsoluteLayout.LayoutFlags="PositionProportional" />
         <ImageButton
             Padding="0"
-            x:Name="myButton"
             AbsoluteLayout.LayoutBounds="0.97,0.97,-1,-1"
             AbsoluteLayout.LayoutFlags="PositionProportional"
             Command="{Binding AddItemCommand}"
             IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.AddCircle},
+                               Glyph={x:Static fonts:IconFont.AddCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

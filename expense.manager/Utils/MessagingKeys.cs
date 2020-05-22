@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace expense.manager
+﻿namespace expense.manager.Utils
 {
     public static class MessagingKeys
     {

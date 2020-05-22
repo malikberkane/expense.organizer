@@ -5,8 +5,8 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:manager="clr-namespace:expense.manager"
     xmlns:views="clr-namespace:expense.manager.Views"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     Title="{Binding CurrentTag.Name}"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}"
@@ -38,12 +38,12 @@
                     <SwipeView.LeftItems>
                         <SwipeItems>
                             <SwipeItem
-                                Text="{x:Static manager:AppContent.Edit}"
+                                Text="{x:Static resources:AppContent.Edit}"
                                 BackgroundColor="{StaticResource MainColor}"
                                 Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
                                 CommandParameter="{Binding .}" />
                             <SwipeItem
-                                Text="{x:Static manager:AppContent.Untag}"
+                                Text="{x:Static resources:AppContent.Untag}"
                                 BackgroundColor="{StaticResource MainColor}"
                                 Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
                                 CommandParameter="{Binding .}" />

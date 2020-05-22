@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using expense.manager.Models;
+using expense.manager.Utils;
 using Xamarin.Forms;
 
 namespace expense.manager.ViewModels.PageModels

@@ -5,8 +5,8 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
     xmlns:views="clr-namespace:expense.manager.Views"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     BackgroundColor="{StaticResource MainColor}"
     Padding="10"
     x:Class="expense.manager.Views.Pages.CurrencyChoicePage">
@@ -16,7 +16,7 @@
     <Shell.TitleView>
         <ContentView Padding="10">
             <Label
-                Text="{x:Static manager:AppContent.CurrencyChoicePageTitle}"
+                Text="{x:Static resources:AppContent.CurrencyChoicePageTitle}"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand" />

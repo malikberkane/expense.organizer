@@ -1,9 +1,9 @@
-﻿using expense.manager.Services;
-using expense.manager.ViewModels.PageModels;
+﻿using expense.manager.Models;
+using expense.manager.Services;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace expense.manager
+namespace expense.manager.Utils
 {
     public static class AppPreferences
     {

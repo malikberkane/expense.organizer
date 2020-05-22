@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace expense.manager {
+namespace expense.manager.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace expense.manager {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("expense.manager.AppContent", typeof(AppContent).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("expense.manager.Resources.AppContent", typeof(AppContent).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

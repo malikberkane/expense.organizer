@@ -9,9 +9,5 @@ namespace expense.manager.Models
         public double? AmmountSpent { get; set; }
 
 
-        public ICollection<Expense> Expenses { get; set; }
-
-
-
     }
 }

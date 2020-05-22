@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace expense.manager
+namespace expense.manager.Converters
 {
     public class NegateConverter : IValueConverter
     {

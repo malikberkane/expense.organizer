@@ -8,6 +8,7 @@
     Padding="10"
     BackgroundColor="{StaticResource MainColor}"
     xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     x:Class="expense.manager.Views.Pages.AboutPage">
 
     <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
@@ -15,7 +16,7 @@
     <Shell.TitleView>
         <ContentView Padding="10">
             <Label
-                Text="{x:Static manager:AppContent.AboutPageTitle}"
+                Text="{x:Static resources:AppContent.AboutPageTitle}"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand" />
@@ -33,7 +34,7 @@
             Margin="3" />
 
         <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
-            <Label Text="{x:Static manager:AppContent.Developer}" Margin="3" />
+            <Label Text="{x:Static resources:AppContent.Developer}" Margin="3" />
 
             <Label Text="Malik BERKANE" Margin="3" />
 
@@ -41,7 +42,7 @@
 
         <Button
             Margin="0"
-            Text="{x:Static manager:AppContent.GoToSourceCode}"
+            Text="{x:Static resources:AppContent.GoToSourceCode}"
             Command="{Binding GoToGithubPageCommand}" />
     </StackLayout>
 

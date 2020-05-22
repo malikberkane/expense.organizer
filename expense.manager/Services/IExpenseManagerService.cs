@@ -9,7 +9,7 @@ namespace expense.manager.Services
     {
 
         Task<IEnumerable<Category>> GetAllCategories();
-        Task<int> AddExpense(Expense expense);
+        Task AddOrUpdateExpense(Expense expense);
 
 
         Task<bool> DeleteExpense(Expense expense);
@@ -30,7 +30,7 @@ namespace expense.manager.Services
         Task<IEnumerable<Expense>> GetExpensesByTag(int tagId);
         Task<IEnumerable<Tag>> GetTagsForExpense(int expenseId);
         Task UntagExpense(Tag tag, Expense expense);
-        Task<int> AddOrUpdateCategory(Category category);
+        Task AddOrUpdateCategory(Category category);
         IEnumerable<Currency> GetCurrencies();
         Task<Currency> GetCurrency(string code);
         Task<double?> GetSpecifiedBudget(Category category, string monthId);

@@ -5,6 +5,10 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:converters="clr-namespace:expense.manager.Converters;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
+    xmlns:views="clr-namespace:expense.manager.Views;assembly=expense.manager"
     mc:Ignorable="d"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}"
@@ -13,7 +17,7 @@
     <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
     <ContentPage.Resources>
         <ResourceDictionary>
-            <manager:NumericToStringDisplayConverter x:Key="NumericConverter" />
+            <converters:NumericToStringDisplayConverter x:Key="NumericConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -21,7 +25,7 @@
     <Shell.TitleView>
         <ContentView Padding="10">
             <Label
-                Text="{x:Static manager:AppContent.Budget}"
+                Text="{x:Static resources:AppContent.Budget}"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand" />
@@ -38,13 +42,13 @@
 
             <Frame>
                 <StackLayout>
-                    <Label Text="{x:Static manager:AppContent.MonthlyRecurringBudgetLabel}" VerticalOptions="Start" />
+                    <Label Text="{x:Static resources:AppContent.MonthlyRecurringBudgetLabel}" VerticalOptions="Start" />
 
 
-                    <manager:NumericInput
+                    <views:NumericInput
                         Keyboard="Numeric"
                         AllowFraction="True"
-                        Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
+                        Placeholder="{x:Static resources:AppContent.AmountPlaceholder}"
                         Text="{Binding Category.RecurringBudget, Converter={StaticResource NumericConverter}}" />
 
 
@@ -54,10 +58,10 @@
                 <StackLayout>
                     <StackLayout Orientation="Horizontal" Spacing="2">
                         <StackLayout>
-                            <Label Text="{x:Static manager:AppContent.SpecifiedBudgetLabel}" />
+                            <Label Text="{x:Static resources:AppContent.SpecifiedBudgetLabel}" />
 
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{x:Static manager:AppContent.CurrentMonthLabel}" />
+                                <Label Text="{x:Static resources:AppContent.CurrentMonthLabel}" />
                                 <Label Text="{Binding CurrentMonthId}" />
                             </StackLayout>
                         </StackLayout>
@@ -67,7 +71,7 @@
                             HorizontalOptions="EndAndExpand"
                             Command="{Binding DisplaySpecialBudgetDialog}"
                             Source="{FontImage FontFamily=MaterialFontFamily,
-                                               Glyph={x:Static manager:IconFont.InfoOutline},
+                                               Glyph={x:Static fonts:IconFont.InfoOutline},
                                                Color=Black,
                                                Size=25}"
                             BackgroundColor="Transparent" />
@@ -75,10 +79,10 @@
                     </StackLayout>
 
 
-                    <manager:NumericInput
+                    <views:NumericInput
                         Keyboard="Numeric"
                         AllowFraction="True"
-                        Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
+                        Placeholder="{x:Static resources:AppContent.AmountPlaceholder}"
                         Text="{Binding SpecifiedBudget, Converter={StaticResource NumericConverter}}" />
 
 
@@ -92,7 +96,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             Command="{Binding AddItemCommand}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Glyph={x:Static fonts:IconFont.CheckCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

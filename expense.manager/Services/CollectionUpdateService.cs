@@ -1,9 +1,7 @@
-﻿using expense.manager.ViewModels;
-using expense.manager.ViewModels.Base;
-using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
+using expense.manager.Utils;
 using Xamarin.Forms;
 
 namespace expense.manager.Services

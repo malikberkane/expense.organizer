@@ -6,6 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:manager="clr-namespace:expense.manager"
     xmlns:views="clr-namespace:expense.manager.Views"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:converters="clr-namespace:expense.manager.Converters;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     mc:Ignorable="d"
     x:Class="expense.manager.App">
     <Application.Resources>
@@ -45,12 +48,12 @@
                 <SwipeView.LeftItems>
                     <SwipeItems SwipeBehaviorOnInvoked="Auto">
                         <SwipeItem
-                            Text="{x:Static manager:AppContent.Edit}"
+                            Text="{x:Static resources:AppContent.Edit}"
                             BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
                             CommandParameter="{Binding .}" />
                         <SwipeItem
-                            Text="{x:Static manager:AppContent.Delete}"
+                            Text="{x:Static resources:AppContent.Delete}"
                             BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
                             CommandParameter="{Binding .}" />
@@ -71,12 +74,12 @@
                 <SwipeView.LeftItems>
                     <SwipeItems SwipeBehaviorOnInvoked="Auto">
                         <SwipeItem
-                            Text="{x:Static manager:AppContent.Edit}"
+                            Text="{x:Static resources:AppContent.Edit}"
                             BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
                             CommandParameter="{Binding .}" />
                         <SwipeItem
-                            Text="{x:Static manager:AppContent.Delete}"
+                            Text="{x:Static resources:AppContent.Delete}"
                             BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
                             CommandParameter="{Binding .}" />
@@ -86,7 +89,7 @@
                 <SwipeView.RightItems>
                     <SwipeItems SwipeBehaviorOnInvoked="Auto">
                         <SwipeItem
-                            Text="{x:Static manager:AppContent.Budget}"
+                            Text="{x:Static resources:AppContent.Budget}"
                             BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.BudgetCategoryCommand}"
                             CommandParameter="{Binding .}" />
@@ -114,7 +117,7 @@
                                     HorizontalOptions="EndAndExpand"
                                     AbsoluteLayout.LayoutFlags="PositionProportional"
                                     Source="{FontImage FontFamily=MaterialFontFamily,
-                                                       Glyph={x:Static manager:IconFont.SubdirectoryArrowRight},
+                                                       Glyph={x:Static fonts:IconFont.SubdirectoryArrowRight},
                                                        Color={StaticResource CellItemsColor},
                                                        Size=20}"
                                     BackgroundColor="Transparent" />
@@ -154,7 +157,7 @@
         </DataTemplate>
 
 
-        <manager:NegateConverter x:Key="NegateConverter" />
+        <converters:NegateConverter x:Key="NegateConverter" />
 
 
 

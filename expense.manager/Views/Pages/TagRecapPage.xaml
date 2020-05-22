@@ -5,8 +5,9 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
-    Title="{x:Static manager:AppContent.TagRecapPageTitle}"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
+    Title="{x:Static resources:AppContent.TagRecapPageTitle}"
     BackgroundColor="{StaticResource MainColor}"
     Padding="10"
     x:Class="expense.manager.Views.Pages.TagRecapPage">
@@ -30,7 +31,7 @@
             <CollectionView.Header>
                 <ContentView Padding="20">
                     <Label
-                        Text="{x:Static manager:AppContent.TagRecapPageTitle}"
+                        Text="{x:Static resources:AppContent.TagRecapPageTitle}"
                         FontAttributes="Bold"
                         FontSize="18"
                         VerticalOptions="CenterAndExpand" />
@@ -46,13 +47,13 @@
                         <SwipeView.LeftItems>
                             <SwipeItems SwipeBehaviorOnInvoked="RemainOpen">
                                 <SwipeItem
-                                    Text="{x:Static manager:AppContent.Edit}"
+                                    Text="{x:Static resources:AppContent.Edit}"
                                     BackgroundColor="{StaticResource MainColor}"
                                     Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
                                     CommandParameter="{Binding .}" />
 
                                 <SwipeItem
-                                    Text="{x:Static manager:AppContent.Delete}"
+                                    Text="{x:Static resources:AppContent.Delete}"
                                     BackgroundColor="{StaticResource MainColor}"
                                     Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
                                     CommandParameter="{Binding .}" />
@@ -75,7 +76,7 @@
                                             </ResourceDictionary>
                                         </StackLayout.Resources>
 
-                                        <Image Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.LabelOutline}, Color=#E85D4A, Size=25}" BackgroundColor="Transparent" />
+                                        <Image Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.LabelOutline}, Color=#E85D4A, Size=25}" BackgroundColor="Transparent" />
 
                                         <Label
                                             Text="{Binding Name}"
@@ -87,7 +88,7 @@
                                             HorizontalOptions="EndAndExpand"
                                             AbsoluteLayout.LayoutFlags="PositionProportional"
                                             Source="{FontImage FontFamily=MaterialFontFamily,
-                                                               Glyph={x:Static manager:IconFont.KeyboardArrowRight},
+                                                               Glyph={x:Static fonts:IconFont.KeyboardArrowRight},
                                                                Color=Black,
                                                                Size=20}"
                                             BackgroundColor="Transparent" />
@@ -134,7 +135,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             Command="{Binding AddItemCommand}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.AddCircle},
+                               Glyph={x:Static fonts:IconFont.AddCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

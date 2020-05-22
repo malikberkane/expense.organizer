@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace expense.manager.ViewModels.PageModels
+﻿namespace expense.manager.Models
 {
     public class Currency
     {
@@ -17,11 +15,5 @@ namespace expense.manager.ViewModels.PageModels
         }
 
 
-    }
-
-
-    public class Rootobject
-    {
-        public List<Currency> currencies { get; set; }
     }
 }

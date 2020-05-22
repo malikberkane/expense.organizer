@@ -4,14 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     mc:Ignorable="d"
     BackgroundColor="{StaticResource MainColor}"
     x:Class="expense.manager.Views.Pages.TagChoicePage">
     <Shell.TitleView>
         <ContentView Padding="10">
             <Label
-                Text="{x:Static manager:AppContent.TagChoicePageTitle}"
+                Text="{x:Static resources:AppContent.TagChoicePageTitle}"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand" />
@@ -82,7 +83,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             Command="{Binding ValidateSelectionCommand}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Glyph={x:Static fonts:IconFont.CheckCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

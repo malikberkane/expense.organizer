@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace expense.manager.Services
+namespace expense.manager.Utils
 {
     public static class Extensions
     {
+        public static string ToMonthId(this DateTime date)
+        {
+            return $"{date:MM/yyyy}";
+        }
+
+
         public static IEnumerable<T> SelectManyRecursive<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>> selector)
         {
             if (source == null) throw new ArgumentNullException("source");

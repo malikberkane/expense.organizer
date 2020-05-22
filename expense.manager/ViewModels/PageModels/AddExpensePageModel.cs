@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using expense.manager.Mapping;
 using expense.manager.Models;
 using expense.manager.Services;
+using expense.manager.Utils;
 using expense.manager.ViewModels.Base;
 using Xamarin.Forms;
 
@@ -97,7 +98,7 @@ namespace expense.manager.ViewModels.PageModels
         private async Task AddExpenseImpl()
         {
             Expense.TagList = LinkedTags.Select(tag => tag.Map<TagVm, Tag>());
-            await Service.AddExpense(Expense.Map<ExpenseVm, Expense>());
+            await Service.AddOrUpdateExpense(Expense.Map<ExpenseVm, Expense>());
         }
 
 

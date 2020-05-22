@@ -5,17 +5,14 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:manager="clr-namespace:expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
     Padding="3"
     BackgroundColor="{StaticResource MainColor}"
     x:Class="expense.manager.Views.ExpenseCell">
 
-    <Frame
-        Padding="20"
-        x:Name="myFrame"
-        BackgroundColor="{StaticResource FrameBackgroundColor}">
+    <Frame Padding="20" BackgroundColor="{StaticResource FrameBackgroundColor}">
         <StackLayout Orientation="Horizontal">
-            <Image Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.Payment}, Color={StaticResource SecondaryColor}, Size=25}" BackgroundColor="Transparent" />
+            <Image Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.Payment}, Color={StaticResource SecondaryColor}, Size=25}" BackgroundColor="Transparent" />
             <Label
                 Text="{Binding ExpenseLabel}"
                 FontSize="18"

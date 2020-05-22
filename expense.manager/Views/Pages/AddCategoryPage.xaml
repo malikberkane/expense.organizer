@@ -5,6 +5,9 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:converters="clr-namespace:expense.manager.Converters;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     mc:Ignorable="d"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}"
@@ -32,7 +35,7 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource FrameBackgroundColor}" />
 
             </Style>
-            <manager:NullToPlaceholderConverter x:Key="NullToPlaceholderConverter" />
+            <converters:NullToPlaceholderConverter x:Key="NullToPlaceholderConverter" />
         </ResourceDictionary>
 
     </ContentPage.Resources>
@@ -40,19 +43,19 @@
         <ScrollView AbsoluteLayout.LayoutBounds="0,1,1,1" AbsoluteLayout.LayoutFlags="All">
             <StackLayout Spacing="6">
 
-                <Label Text="{x:Static manager:AppContent.DetailsLabel}" Margin="20" />
+                <Label Text="{x:Static resources:AppContent.DetailsLabel}" Margin="20" />
                 <Frame>
-                    <Entry Placeholder="{x:Static manager:AppContent.CategoryLabelPlaceholder}" Text="{Binding Category.Name}" />
+                    <Entry Placeholder="{x:Static resources:AppContent.CategoryLabelPlaceholder}" Text="{Binding Category.Name}" />
                 </Frame>
                 <Frame>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="{x:Static manager:AppContent.ParentCategoryLabel}" />
+                        <Label Text="{x:Static resources:AppContent.ParentCategoryLabel}" />
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal"
                             VerticalOptions="CenterAndExpand">
                             <Label Text="{Binding Category.ParentCategory, Converter={StaticResource NullToPlaceholderConverter}}" FontAttributes="Bold" />
-                            <Image BackgroundColor="Transparent" Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.KeyboardArrowRight}, Color={StaticResource CellItemsColor}, Size=20}" />
+                            <Image BackgroundColor="Transparent" Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.KeyboardArrowRight}, Color={StaticResource CellItemsColor}, Size=20}" />
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectParentCommand}" />
@@ -81,7 +84,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             Command="{Binding AddItemCommand}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Glyph={x:Static fonts:IconFont.CheckCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

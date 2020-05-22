@@ -7,6 +7,7 @@ using expense.manager.Services;
 using expense.manager.Views;
 using AutoMapper;
 using expense.manager.Mapping;
+using expense.manager.Utils;
 
 namespace expense.manager
 {
@@ -16,7 +17,6 @@ namespace expense.manager
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
 
             DependencyService.Register<Repository>();
             DependencyService.Register<ExpenseManagerService>();

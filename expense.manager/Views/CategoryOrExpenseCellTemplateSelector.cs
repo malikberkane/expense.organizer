@@ -1,10 +1,7 @@
 ﻿using expense.manager.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
-namespace expense.manager
+namespace expense.manager.Views
 {
     public class CategoryOrExpenseCellTemplateSelector: DataTemplateSelector
     {

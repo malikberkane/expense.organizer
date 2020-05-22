@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
     mc:Ignorable="d"
     x:Class="expense.manager.Views.Pages.ExpenseByDatePage"
     Padding="10"
@@ -52,7 +52,7 @@
                                 BackgroundColor="Transparent"
                                 IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
                                 Source="{FontImage FontFamily=MaterialFontFamily,
-                                                   Glyph={x:Static manager:IconFont.ArrowBack},
+                                                   Glyph={x:Static fonts:IconFont.ArrowBack},
                                                    Color={StaticResource HeaderItemsColor},
                                                    Size=20}">
 
@@ -72,7 +72,7 @@
                                 Command="{Binding ChangeSelectedMonthCommand}"
                                 HorizontalOptions="FillAndExpand"
                                 Source="{FontImage FontFamily=MaterialFontFamily,
-                                                   Glyph={x:Static manager:IconFont.ArrowForward},
+                                                   Glyph={x:Static fonts:IconFont.ArrowForward},
                                                    Color={StaticResource HeaderItemsColor},
                                                    Size=20}">
 
@@ -114,7 +114,7 @@
             Command="{Binding AddItemCommand}"
             IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.AddCircle},
+                               Glyph={x:Static fonts:IconFont.AddCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

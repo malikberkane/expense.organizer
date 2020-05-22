@@ -5,6 +5,10 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:manager="clr-namespace:expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:converters="clr-namespace:expense.manager.Converters;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
+    xmlns:views="clr-namespace:expense.manager.Views;assembly=expense.manager"
     mc:Ignorable="d"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}"
@@ -13,8 +17,8 @@
     x:Class="expense.manager.Views.Pages.AddExpensePage">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <manager:NumericToStringDisplayConverter x:Key="NumericConverter" />
-            <manager:NullToPlaceholderConverter x:Key="NullToPlaceholderConverter" />
+            <converters:NumericToStringDisplayConverter x:Key="NumericConverter" />
+            <converters:NullToPlaceholderConverter x:Key="NullToPlaceholderConverter" />
             <Style TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource CellItemsColor}" />
             </Style>
@@ -50,26 +54,26 @@
                 AbsoluteLayout.LayoutFlags="All">
 
                 <Frame>
-                    <Entry Placeholder="{x:Static manager:AppContent.ExpenseLabelPlaceholder}" Text="{Binding Expense.ExpenseLabel}" />
+                    <Entry Placeholder="{x:Static resources:AppContent.ExpenseLabelPlaceholder}" Text="{Binding Expense.ExpenseLabel}" />
                 </Frame>
 
 
                 <Frame>
-                    <manager:NumericInput
+                    <views:NumericInput
                         Keyboard="Numeric"
                         AllowFraction="True"
-                        Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
+                        Placeholder="{x:Static resources:AppContent.AmountPlaceholder}"
                         Text="{Binding Expense.Ammount, Converter={StaticResource NumericConverter}}" />
                 </Frame>
                 <Frame>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="{x:Static manager:AppContent.ParentCategoryLabel}" />
+                        <Label Text="{x:Static resources:AppContent.ParentCategoryLabel}" />
                         <StackLayout
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal"
                             VerticalOptions="CenterAndExpand">
-                            <Label Text="{Binding ParentCategory, Converter={StaticResource NullToPlaceholderConverter}, ConverterParameter='{x:Static manager:AppContent.None}'}" FontAttributes="Bold" />
-                            <Image BackgroundColor="Transparent" Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.KeyboardArrowRight}, Color={StaticResource CellItemsColor}, Size=20}" />
+                            <Label Text="{Binding ParentCategory, Converter={StaticResource NullToPlaceholderConverter}, ConverterParameter='{x:Static resources:AppContent.None}'}" FontAttributes="Bold" />
+                            <Image BackgroundColor="Transparent" Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.KeyboardArrowRight}, Color={StaticResource CellItemsColor}, Size=20}" />
 
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding SelectParentCommand}" />
@@ -97,19 +101,19 @@
                 </Frame>
 
                 <Button
-                    Text="{x:Static manager:AppContent.AddTagsLabel}"
+                    Text="{x:Static resources:AppContent.AddTagsLabel}"
                     HorizontalOptions="Start"
                     Command="{Binding AddTagsCommand}" />
 
                 <ContentView Padding="10,0">
-                    <Label Text="{x:Static manager:AppContent.TagsLabel}" TextColor="{StaticResource CellItemsColor}" />
+                    <Label Text="{x:Static resources:AppContent.TagsLabel}" TextColor="{StaticResource CellItemsColor}" />
                 </ContentView>
 
                 <CollectionView
                     ItemsLayout="HorizontalList"
                     ItemsSource="{Binding LinkedTags}"
                     SelectionMode="None"
-                    EmptyView="{x:Static manager:AppContent.NoTagsLinked}"
+                    EmptyView="{x:Static resources:AppContent.NoTagsLinked}"
                     HeightRequest="100">
 
 
@@ -148,7 +152,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             Command="{Binding AddItemCommand}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Glyph={x:Static fonts:IconFont.CheckCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

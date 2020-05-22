@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 using expense.manager.Data;
 using expense.manager.Mapping;
 using expense.manager.Models;
-using expense.manager.ViewModels.PageModels;
+using expense.manager.Utils;
 using MethodTimer;
 using Newtonsoft.Json;
-using Xamarin.Forms;
 
 namespace expense.manager.Services
 {
@@ -20,7 +19,7 @@ namespace expense.manager.Services
         {
 
             var result = new List<Currency>();
-            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(ExpenseManagerService)).Assembly;
+            var assembly = typeof(ExpenseManagerService).GetTypeInfo().Assembly;
             Stream stream = assembly.GetManifestResourceStream("expense.manager.Common-Currency.json");
 
             using (var reader = new StreamReader(stream))
@@ -80,7 +79,7 @@ namespace expense.manager.Services
                 ?.Select(expense => expense.Map<ExpenseData, Expense>()).ToList();
         }
 
-        public async Task<int> AddExpense(Expense expense)
+        public async Task AddOrUpdateExpense(Expense expense)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
             var dataObject = expense.Map<Expense, ExpenseData>();
@@ -88,26 +87,17 @@ namespace expense.manager.Services
             var expenseId = await unitOfWork.Repository.AddExpense(dataObject);
             await unitOfWork.Repository.AddTagsToExpense(expenseId, expense.TagList.Select(t => t.Id));
             unitOfWork.Complete();
-            return expenseId;
         }
 
-        public async Task<int> AddOrUpdateCategory(Category category)
+        public async Task AddOrUpdateCategory(Category category)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
 
             var categoryToAdd = category.Map<Category, CategoryData>();
             categoryToAdd.ParentId = category.ParentCategory?.Id ?? 0;
-            var newCategoryId = await unitOfWork.Repository.AddCategory(categoryToAdd);
-
-        
-
-
- 
-
-            category.Id = newCategoryId;
+            await unitOfWork.Repository.AddCategory(categoryToAdd);
 
             unitOfWork.Complete();
-            return newCategoryId;
         }
 
 

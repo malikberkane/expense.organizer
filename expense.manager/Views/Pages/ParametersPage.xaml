@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     BackgroundColor="{StaticResource MainColor}"
     Padding="10"
     x:Class="expense.manager.Views.Pages.ParametersPage">
@@ -20,7 +21,7 @@
     <Shell.TitleView>
         <ContentView Padding="10">
             <Label
-                Text="{x:Static manager:AppContent.SettingsPageTitle}"
+                Text="{x:Static resources:AppContent.SettingsPageTitle}"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand" />
@@ -32,7 +33,7 @@
                 <TapGestureRecognizer Command="{Binding NavigateToCurrencyChoice}" />
             </Frame.GestureRecognizers>
             <StackLayout Orientation="Horizontal">
-                <Label Text="{x:Static manager:AppContent.Currency}" />
+                <Label Text="{x:Static resources:AppContent.Currency}" />
                 <Label Text="{Binding CurrentCurrency}" HorizontalOptions="EndAndExpand" />
 
 
@@ -41,7 +42,7 @@
 
         <Frame>
 
-            <Label Text="{x:Static manager:AppContent.About}">
+            <Label Text="{x:Static resources:AppContent.About}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding NavigateToAboutPage}" />
                 </Label.GestureRecognizers>

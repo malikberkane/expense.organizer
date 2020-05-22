@@ -5,7 +5,8 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     x:Class="expense.manager.Views.Pages.SelectParentPage"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}">
@@ -15,13 +16,13 @@
             <StackLayout Orientation="Horizontal">
 
                 <Label
-                    Text="{x:Static manager:AppContent.SelectParentPageTitle}"
+                    Text="{x:Static resources:AppContent.SelectParentPageTitle}"
                     FontAttributes="Bold"
                     FontSize="Medium"
                     VerticalOptions="CenterAndExpand" />
 
                 <Label
-                    Text="{x:Static manager:AppContent.None}"
+                    Text="{x:Static resources:AppContent.None}"
                     HorizontalOptions="EndAndExpand"
                     VerticalOptions="CenterAndExpand"
                     FontAttributes="Bold"
@@ -65,7 +66,7 @@
                                     Command="{Binding Source={x:Reference CollectionView}, Path=Parent.BindingContext.NavigateToChildrenListCommand}"
                                     CommandParameter="{Binding .}"
                                     Source="{FontImage FontFamily=MaterialFontFamily,
-                                                       Glyph={x:Static manager:IconFont.SubdirectoryArrowRight},
+                                                       Glyph={x:Static fonts:IconFont.SubdirectoryArrowRight},
                                                        Color={StaticResource CellItemsColor},
                                                        Size=30}"
                                     BackgroundColor="Transparent" />
@@ -82,7 +83,7 @@
                                     <VisualState.Setters>
                                         <Setter Property="BackgroundColor" Value="{StaticResource SecondaryColor}" />
                                         <Setter TargetName="CellLabel" Property="Label.TextColor" Value="White" />
-                                        <Setter TargetName="subCategsButton" Property="ImageButton.Source" Value="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.SubdirectoryArrowRight}, Color=White, Size=30}" />
+                                        <Setter TargetName="subCategsButton" Property="ImageButton.Source" Value="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.SubdirectoryArrowRight}, Color=White, Size=30}" />
 
                                     </VisualState.Setters>
                                 </VisualState>
@@ -103,7 +104,7 @@
             AbsoluteLayout.LayoutFlags="PositionProportional"
             Command="{Binding ValidateParentCategoryCommand}"
             Source="{FontImage FontFamily=MaterialFontFamily,
-                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Glyph={x:Static fonts:IconFont.CheckCircle},
                                Color={StaticResource SecondaryColor},
                                Size=60}"
             BackgroundColor="Transparent" />

@@ -7,20 +7,17 @@
 
   <ItemGroup>
     <None Remove="Brandon_reg.otf" />
-    <None Remove="categ_icon.png" />
     <None Remove="Common-Currency.json" />
-    <None Remove="Fonts\Resources\categ_icon.png" />
     <None Remove="MaterialFontFamily.ttf" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="categ_icon.png" />
-    <EmbeddedResource Include="Fonts\Brandon_reg.otf" />
-    <EmbeddedResource Include="Common-Currency.json">
+    <EmbeddedResource Include="Resources\Fonts\Brandon_reg.otf" />
+    <EmbeddedResource Include="Resources\Common-Currency.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Fonts\MaterialFontFamily.ttf" />
-    <EmbeddedResource Include="Fonts\Resources\categ_icon.png" />
+    <EmbeddedResource Include="Resources\Fonts\MaterialFontFamily.ttf" />
+    <EmbeddedResource Include="Resources\categ_icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AppContent.Designer.cs">
+    <Compile Update="Resources\AppContent.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AppContent.resx</DependentUpon>
@@ -48,12 +45,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="AppContent.resx">
+    <EmbeddedResource Update="Resources\AppContent.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AppContent.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="DataTemplateDictionary.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ExpenseCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
