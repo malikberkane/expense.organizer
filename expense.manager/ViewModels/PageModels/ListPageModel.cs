@@ -115,11 +115,11 @@ namespace expense.manager.ViewModels.PageModels
 
         protected override void BeforeLoadingData()
         {
-            MessagingCenter.Subscribe<MessagingService, BaseViewModel>(this, MessagingKeys.AddItemKey, (sender, item) =>
+            MessagingCenter.Subscribe<MessagingService>(this, MessagingKeys.AddItemKey, (sender) =>
             {
                 QueueReloadTask();
             });
-            MessagingCenter.Subscribe<MessagingService, BaseViewModel>(this, MessagingKeys.DeleteItemKey, (sender, item) =>
+            MessagingCenter.Subscribe<MessagingService>(this, MessagingKeys.DeleteItemKey, (sender) =>
             {
                 QueueReloadTask();
             });

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using expense.manager.ViewModels.Base;
 using Xamarin.Essentials;
 
@@ -13,6 +14,8 @@ namespace expense.manager.ViewModels
         private double? _ammountSpent;
         private double? _budget;
         private double? _recurringBudget;
+
+        
 
         public int Id
         {
@@ -81,5 +84,16 @@ namespace expense.manager.ViewModels
 
         public string AmmountFormatted => $"{string.Format("{0:0.##}",AmmountSpent)} {AppPreferences.CurrentCurrency?.symbol}";
 
+
+        public override bool Equals(object obj)
+        {
+            if (obj is CategoryVm otherCateg)
+            {
+                return this.Id == otherCateg.Id;
+
+            }
+
+            return false;
+        }
     }
 }

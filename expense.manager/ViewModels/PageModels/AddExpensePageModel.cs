@@ -76,31 +76,28 @@ namespace expense.manager.ViewModels.PageModels
 
         private Command _addItemCommand;
 
-        public Command AddItemCommand => this._addItemCommand ?? (
-                                             this._addItemCommand = new Command(async () =>
-                                             {
+        public Command AddItemCommand => this._addItemCommand ??= new Command(async () =>
+            {
 
 
-                                                 if (!EnsureExpenseValid())
-                                                 {
-                                                     await NavigationService.DisplayAlert(AppContent.InvalidItemAlert);
-                                                     return;
+                if (!EnsureExpenseValid())
+                {
+                    await NavigationService.DisplayAlert(AppContent.InvalidItemAlert);
+                    return;
 
-                                                 }
+                }
 
-                                                 await AddExpenseImpl();
-                                                 await CleanPopAsync();
-                                                 await CollectionUpdateService.QueueAddOrUpdateCollectionItemTasks(Expense);
+                await AddExpenseImpl();
+                await CleanPopAsync();
+                await CollectionUpdateService.QueueAddOrUpdateCollectionItemTasks();
 
-                                             }
-                                             )  
-                                         );
+            }
+        );
 
         private async Task AddExpenseImpl()
         {
             Expense.TagList = LinkedTags.Select(tag => tag.Map<TagVm, Tag>());
-            var resultSave = await Service.AddExpense(Expense.Map<ExpenseVm, Expense>());
-            Expense.Id = resultSave;
+            await Service.AddExpense(Expense.Map<ExpenseVm, Expense>());
         }
 
 
@@ -113,43 +110,37 @@ namespace expense.manager.ViewModels.PageModels
         private Command _selectParentCommand;
 
 
-        public Command SelectParentCommand => _selectParentCommand ?? (
-                                             _selectParentCommand = new Command(async () =>
-                                             {
-                                                 var allCategories = await Service.GetAllCategories();
-                                                 await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() { LevelId = 0, AllCategories = allCategories });
-                                             }
-                                             )
-                                         );
+        public Command SelectParentCommand => _selectParentCommand ??= new Command(async () =>
+            {
+                var allCategories = (await Service.GetAllCategories())?.Select(c=>c.Map<Category,CategoryVm>());
+                await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() { LevelId = 0, AllCategories = allCategories });
+            }
+        );
 
 
 
         private Command _addTagsCommand;
         private ICollection<TagVm> linkedTags;
 
-        public Command AddTagsCommand => _addTagsCommand ?? (
-                                             _addTagsCommand = new Command(async () =>
-                                             {
-                                                 await NavigationService.NavigateTo<TagChoicePageModel>(LinkedTags);
-                                             }
-                                             )
-                                         );
+        public Command AddTagsCommand => _addTagsCommand ??= new Command(async () =>
+            {
+                await NavigationService.NavigateTo<TagChoicePageModel>(LinkedTags);
+            }
+        );
 
 
 
         private Command _removeTagCommand;
 
 
-        public Command RemoveTagCommand => _removeTagCommand ?? (
-                                             _removeTagCommand = new Command<TagVm>(async (tag) =>
-                                             {
-                                                 if(await NavigationService.DisplayYesNoMessage(AppContent.RemoveTagPrompt))
-                                                 {
-                                                     LinkedTags.Remove(tag);
-                                                 }
-                                             }
-                                             )
-                                         );
+        public Command RemoveTagCommand => _removeTagCommand ??= new Command<TagVm>(async (tag) =>
+            {
+                if(await NavigationService.DisplayYesNoMessage(AppContent.RemoveTagPrompt))
+                {
+                    LinkedTags.Remove(tag);
+                }
+            }
+        );
 
 
         protected override void BeforePop()

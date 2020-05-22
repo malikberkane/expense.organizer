@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
+    mc:Ignorable="d"
+    Padding="10"
+    BackgroundColor="{StaticResource MainColor}"
+    x:Class="expense.manager.Views.Pages.BudgetPage">
+
+    <Shell.NavBarHasShadow>False</Shell.NavBarHasShadow>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <manager:NumericToStringDisplayConverter x:Key="NumericConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Shell.TitleView>
+        <ContentView Padding="10">
+            <Label
+                Text="{x:Static manager:AppContent.Budget}"
+                FontAttributes="Bold"
+                FontSize="Medium"
+                VerticalOptions="CenterAndExpand" />
+        </ContentView>
+    </Shell.TitleView>
+
+    <AbsoluteLayout>
+        <StackLayout
+            Spacing="6"
+            AbsoluteLayout.LayoutBounds="0,1,1,1"
+            AbsoluteLayout.LayoutFlags="All">
+            <Label Text="Budget" Margin="20" />
+
+
+            <Frame>
+                <StackLayout>
+                    <Label Text="{x:Static manager:AppContent.MonthlyRecurringBudgetLabel}" VerticalOptions="Start" />
+
+
+                    <manager:NumericInput
+                        Keyboard="Numeric"
+                        AllowFraction="True"
+                        Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
+                        Text="{Binding Category.RecurringBudget, Converter={StaticResource NumericConverter}}" />
+
+
+                </StackLayout>
+            </Frame>
+            <Frame>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="2">
+                        <StackLayout>
+                            <Label Text="{x:Static manager:AppContent.SpecifiedBudgetLabel}" />
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{x:Static manager:AppContent.CurrentMonthLabel}" />
+                                <Label Text="{Binding CurrentMonthId}" />
+                            </StackLayout>
+                        </StackLayout>
+
+                        <ImageButton
+                            VerticalOptions="Start"
+                            HorizontalOptions="EndAndExpand"
+                            Command="{Binding DisplaySpecialBudgetDialog}"
+                            Source="{FontImage FontFamily=MaterialFontFamily,
+                                               Glyph={x:Static manager:IconFont.InfoOutline},
+                                               Color=Black,
+                                               Size=25}"
+                            BackgroundColor="Transparent" />
+
+                    </StackLayout>
+
+
+                    <manager:NumericInput
+                        Keyboard="Numeric"
+                        AllowFraction="True"
+                        Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
+                        Text="{Binding SpecifiedBudget, Converter={StaticResource NumericConverter}}" />
+
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+        <ImageButton
+            Padding="0"
+            AbsoluteLayout.LayoutBounds="0.97,0.97,-1,-1"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Command="{Binding AddItemCommand}"
+            Source="{FontImage FontFamily=MaterialFontFamily,
+                               Glyph={x:Static manager:IconFont.CheckCircle},
+                               Color={StaticResource SecondaryColor},
+                               Size=60}"
+            BackgroundColor="Transparent" />
+    </AbsoluteLayout>
+</ContentPage>

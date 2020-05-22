@@ -147,6 +147,9 @@
   <data name="Bills" xml:space="preserve">
     <value>Bills</value>
   </data>
+  <data name="Budget" xml:space="preserve">
+    <value>Budget</value>
+  </data>
   <data name="ByCategTabTitle" xml:space="preserve">
     <value>By categories</value>
   </data>

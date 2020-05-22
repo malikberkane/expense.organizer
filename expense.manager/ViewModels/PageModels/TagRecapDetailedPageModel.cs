@@ -53,7 +53,7 @@ namespace expense.manager.ViewModels.PageModels
 
 
 
-            await CollectionUpdateService.QueueAddOrUpdateCollectionItemTasks(item);
+            await CollectionUpdateService.QueueAddOrUpdateCollectionItemTasks();
 
         }
 

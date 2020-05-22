@@ -51,7 +51,7 @@
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal"
                             VerticalOptions="CenterAndExpand">
-                            <Label Text="{Binding ParentCategory, Converter={StaticResource NullToPlaceholderConverter}}" FontAttributes="Bold" />
+                            <Label Text="{Binding Category.ParentCategory, Converter={StaticResource NullToPlaceholderConverter}}" FontAttributes="Bold" />
                             <Image BackgroundColor="Transparent" Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static manager:IconFont.KeyboardArrowRight}, Color={StaticResource CellItemsColor}, Size=20}" />
 
                             <StackLayout.GestureRecognizers>
@@ -68,52 +68,6 @@
 
                 </Frame>
 
-                <Label Text="Budget" Margin="20" />
-
-
-                <Frame>
-                    <StackLayout>
-                        <Label Text="{x:Static manager:AppContent.MonthlyRecurringBudgetLabel}" VerticalOptions="Start" />
-                        <Entry
-                            Keyboard="Numeric"
-                            Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
-                            Text="{Binding Category.RecurringBudget}" />
-
-
-                    </StackLayout>
-                </Frame>
-                <Frame>
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" Spacing="2">
-                            <StackLayout>
-                                <Label Text="{x:Static manager:AppContent.SpecifiedBudgetLabel}" />
-
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{x:Static manager:AppContent.CurrentMonthLabel}" />
-                                    <Label Text="{Binding CurrentMonthId}" />
-                                </StackLayout>
-                            </StackLayout>
-
-                            <ImageButton
-                                VerticalOptions="Start"
-                                HorizontalOptions="EndAndExpand"
-                                Command="{Binding DisplaySpecialBudgetDialog}"
-                                Source="{FontImage FontFamily=MaterialFontFamily,
-                                                   Glyph={x:Static manager:IconFont.InfoOutline},
-                                                   Color=Black,
-                                                   Size=25}"
-                                BackgroundColor="Transparent" />
-
-                        </StackLayout>
-
-                        <Entry
-                            Keyboard="Numeric"
-                            Placeholder="{x:Static manager:AppContent.AmountPlaceholder}"
-                            Text="{Binding SpecifiedBudget}" />
-
-
-                    </StackLayout>
-                </Frame>
 
 
 

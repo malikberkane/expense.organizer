@@ -82,6 +82,17 @@
                             CommandParameter="{Binding .}" />
                     </SwipeItems>
                 </SwipeView.LeftItems>
+
+                <SwipeView.RightItems>
+                    <SwipeItems SwipeBehaviorOnInvoked="Auto">
+                        <SwipeItem
+                            Text="{x:Static manager:AppContent.Budget}"
+                            BackgroundColor="{StaticResource MainColor}"
+                            Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.BudgetCategoryCommand}"
+                            CommandParameter="{Binding .}" />
+                    </SwipeItems>
+                </SwipeView.RightItems>
+
                 <ContentView
                     Padding="3"
                     BackgroundColor="{StaticResource MainColor}"

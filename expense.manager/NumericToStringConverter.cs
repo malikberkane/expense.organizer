@@ -24,7 +24,12 @@ namespace expense.manager
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value.ToString() == string.Empty)
+            {
+                return default(double);
+            }
             return value;
+
         }
     }
 

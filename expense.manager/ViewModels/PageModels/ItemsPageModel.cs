@@ -25,7 +25,7 @@ namespace expense.manager.ViewModels.PageModels
             if (item is CategoryVm categ)
             {
 
-                await NavigationService.NavigateTo<AddCategoryPageModel>((categ, monthContext: ItemsContext.MonthId));
+                await NavigationService.NavigateTo<AddCategoryPageModel>(categ);
             }
             else if (item is ExpenseVm expense)
             {
@@ -95,11 +95,11 @@ namespace expense.manager.ViewModels.PageModels
             {
                 await Service.DeleteCategory(categ.Map<CategoryVm, Category>());
 
-                MessagingService.Send<BaseViewModel>(categ, MessagingKeys.DeleteItemKey);
+                MessagingService.Send(MessagingKeys.DeleteItemKey);
             }
 
 
-            await CollectionUpdateService.QueueDeleteCollectionItemTasks(item);
+            await CollectionUpdateService.QueueDeleteCollectionItemTasks();
 
 
 
@@ -131,6 +131,29 @@ namespace expense.manager.ViewModels.PageModels
         }
 
 
+
+
+
+
+        private Command _budgetCategoryCommand;
+
+        public Command BudgetCategoryCommand => _budgetCategoryCommand ??= new Command<CategoryVm>(async (categ) => await BudgetCategoryImpl(categ)
+
+
+        );
+
+
+
+
+        public async Task BudgetCategoryImpl(CategoryVm categ)
+        {
+
+
+            await NavigationService.NavigateTo<BudgetPageModel>((categ, ItemsContext.MonthId));
+
+        }
+
+
         protected override async Task<IEnumerable<BaseViewModel>> LoadItems()
         {
 
@@ -140,7 +163,7 @@ namespace expense.manager.ViewModels.PageModels
                 var result = new List<BaseViewModel>();
 
 
-                var categories = (await Service.GetCategoriesRecap(ItemsContext.MonthId, ItemsContext.Category?.Id ?? 0)).Select(n => n.Map<Category, CategoryVm>());
+                var categories = (await Service.GetCategoriesRecap(ItemsContext.MonthId, ItemsContext.Category.Map<CategoryVm, Category>())).Select(n => n.Map<Category, CategoryVm>());
 
                 if (categories != null && categories.Any())
                 {

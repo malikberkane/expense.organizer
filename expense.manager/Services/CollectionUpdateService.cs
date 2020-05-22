@@ -40,12 +40,12 @@ namespace expense.manager.Services
            
         }
 
-        public async Task QueueAddOrUpdateCollectionItemTasks(BaseViewModel newItem)
+        public async Task QueueAddOrUpdateCollectionItemTasks()
         {
             await Task.Run(() =>
             {
                 
-                    MessagingService.Send<BaseViewModel>(newItem, MessagingKeys.AddItemKey);
+                    MessagingService.Send(MessagingKeys.AddItemKey);
                     Dequeue();
 
 
@@ -54,12 +54,12 @@ namespace expense.manager.Services
 
         }
 
-        public async Task QueueDeleteCollectionItemTasks(BaseViewModel deletedItem)
+        public async Task QueueDeleteCollectionItemTasks()
         {
             await Task.Run(() =>
             {
 
-                MessagingService.Send<BaseViewModel>(deletedItem, MessagingKeys.DeleteItemKey);
+                MessagingService.Send(MessagingKeys.DeleteItemKey);
                 Dequeue();
 
 

@@ -16,7 +16,10 @@ namespace expense.manager.Mapping
             CreateMap<Expense, ExpenseVm>().ReverseMap();
             CreateMap<Expense, ExpenseData>().ReverseMap();
 
-            CreateMap<Category,CategoryVm>().ReverseMap();
+            CreateMap<Category,CategoryVm>()
+                .ForMember(s=>s.Children, c=>c.MapFrom(m=>m.ChildrenCategories))
+                .ForMember(s => s.ParentCategory, c => c.MapFrom(m => m.ParentCategory)).ReverseMap()
+                .ReverseMap();
 
             CreateMap<Category, CategoryData>().ReverseMap();
 

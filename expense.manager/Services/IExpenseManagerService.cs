@@ -15,8 +15,14 @@ namespace expense.manager.Services
         Task<bool> DeleteExpense(Expense expense);
             
         Task<bool> DeleteCategory(Category category);
-        Task<IEnumerable<Category>> GetCategoriesRecap(string monthId, int level=0);
-        Task<IEnumerable<Expense>> GetExpensesRecap(string monthId, int level = -1);
+        Task<IEnumerable<Category>> GetCategoriesRecap(string monthId, Category parentCategory=null);
+
+        Task AddOrUpdateSpecialBudget(Category category, double budget, string monthId);
+
+        Task UpdateParentRecurringBudgets(Category parentCateg, double? oldBudget, double newBudget);
+
+        Task UpdateParentCategsBudgets(Category oldParentCateg, Category newParentCateg, double budgetToTransfer);
+        Task<IEnumerable<Expense>> GetExpensesRecap(string monthId, int categoryId = -1);
         Task<Category> GetCategory(int id);
         Task<IEnumerable<Tag>> GetTags(bool computeAmmounts = true);
         Task<int> AddTag(Tag newTag);
@@ -24,7 +30,7 @@ namespace expense.manager.Services
         Task<IEnumerable<Expense>> GetExpensesByTag(int tagId);
         Task<IEnumerable<Tag>> GetTagsForExpense(int expenseId);
         Task UntagExpense(Tag tag, Expense expense);
-        Task<int> AddCategory(Category category, CategoryEditionTracker editionTracker, string currentMonthId);
+        Task<int> AddOrUpdateCategory(Category category);
         IEnumerable<Currency> GetCurrencies();
         Task<Currency> GetCurrency(string code);
         Task<double?> GetSpecifiedBudget(Category category, string monthId);

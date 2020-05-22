@@ -23,6 +23,9 @@ namespace expense.manager.Data
         Task<CategoryData> GetCategory(int categoryId);
         Task<IEnumerable<ExpenseData>> GetExpenseFromTagAsync(int tagId);
         Task<IEnumerable<ExpenseData>> GetExpenses(Expression<Func<ExpenseData, bool>> predicate);
+
+        Task<double> SumExpenses(Expression<Func<ExpenseData, bool>> predicate);
+
         Task<IEnumerable<TagData>> GetTagsByExpenseId(int expenseId);
         Task SupressExpenseTagRelation(ExpenseData expense, TagData tag);
         Task<IEnumerable<CategoryData>> GetCategories(Expression<Func<CategoryData, bool>> predicate);

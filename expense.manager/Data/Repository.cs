@@ -24,36 +24,13 @@ namespace expense.manager.Data
                 return await _currentContext.Expenses.Where(predicate).ToListAsync();
 
         }
-        private async Task<List<int>> GetChildrenCategoriesId(int id)
+
+        public  Task<double> SumExpenses(Expression<Func<ExpenseData, bool>> predicate)
         {
-            
-            
-                var result = new List<int>();
-                var subcategories = _currentContext.ExpenseCategories.Where(c => c.ParentId == id);
-                result.AddRange(subcategories.Select(n => n.Id));
-                foreach (var item in subcategories)
-                {
-                    result.AddRange(await GetChildrenCategoriesId(item.Id));
-
-                }
-                return result;
-
-            
-
+            return Task.FromResult(_currentContext.Expenses.Where(predicate).Sum(e=>e.Ammount));
         }
-        private async Task<List<int>> GetChildrenRecursive(int id, IEnumerable<CategoryData> list)
-        {
-            var result = new List<int>();
-            var subcategories = list.Where(c => c.ParentId == id);
-            result.AddRange(subcategories.Select(n => n.Id));
-            foreach (var item in subcategories)
-            {
-                result.AddRange(await GetChildrenCategoriesId(item.Id));
 
-            }
-            return result;
-
-        }
+   
         public  Task<IEnumerable<CategoryData>> GetCategories(Expression<Func<CategoryData,bool>> predicate)
         {
 
@@ -80,6 +57,7 @@ namespace expense.manager.Data
             
                 _currentContext.Expenses.Remove(expense);
 
+                //Handle with cascade delete
                 var itemsToRemove = _currentContext.ExpenseTagRelations.Where(n => n.ExpenseId == expense.Id);
                 foreach (var item in itemsToRemove)
                 {
@@ -105,6 +83,7 @@ namespace expense.manager.Data
                 }
 
 
+                await _currentContext.SaveChangesAsync();
                 
 
                 return expense.Id;
@@ -160,7 +139,8 @@ namespace expense.manager.Data
                     _currentContext.Entry(tag).State = EntityState.Modified;
                 }
 
-                
+
+                await _currentContext.SaveChangesAsync();
 
                 return tag.Id;
             }
@@ -206,7 +186,8 @@ namespace expense.manager.Data
                 }
 
 
-                
+                await _currentContext.SaveChangesAsync();
+
 
                 return category.Id;
             }
@@ -221,13 +202,13 @@ namespace expense.manager.Data
 
             }
         }
-        public Task AddTagsToExpense(int expenseId, IEnumerable<int> tagsIds)
+        public async Task AddTagsToExpense(int expenseId, IEnumerable<int> tagsIds)
         {
             
             {
                 var itemsToRemove = _currentContext.ExpenseTagRelations.Where(n => n.ExpenseId == expenseId);
 
-                itemsToRemove.ForEachAsync(i =>
+                await itemsToRemove.ForEachAsync(i =>
                 {
                     _currentContext.ExpenseTagRelations.Remove(i);
                 });
@@ -238,7 +219,6 @@ namespace expense.manager.Data
                     _currentContext.ExpenseTagRelations.Add(new ExpenseTagRelationData { ExpenseId = expenseId, TagId = tagId });
                 }
 
-                return Task.CompletedTask;
             }
 
         }
