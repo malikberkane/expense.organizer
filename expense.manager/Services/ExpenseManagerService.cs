@@ -20,7 +20,7 @@ namespace expense.manager.Services
 
             var result = new List<Currency>();
             var assembly = typeof(ExpenseManagerService).GetTypeInfo().Assembly;
-            Stream stream = assembly.GetManifestResourceStream("expense.manager.Common-Currency.json");
+            Stream stream = assembly.GetManifestResourceStream("expense.manager.Resources.Common-Currency.json");
 
             using (var reader = new StreamReader(stream))
             {
@@ -183,12 +183,12 @@ namespace expense.manager.Services
             unitOfWork.Complete();
         }
 
-        public async Task<bool> DeleteExpense(Expense expense)
+        public async Task<bool> DeleteExpense(Expense expenseToDelete)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
-            await unitOfWork.Repository.DeleteExpense(expense.Map<Expense, ExpenseData>());
+            await unitOfWork.Repository.DeleteExpense(expenseToDelete.Map<Expense, ExpenseData>());
 
-            expense.PreviousCategId = expense.CategoryId;
+            expenseToDelete.PreviousCategId = expenseToDelete.CategoryId;
 
             unitOfWork.Complete();
             return true;
@@ -339,7 +339,7 @@ namespace expense.manager.Services
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
             var result = new List<Category>();
-            var currentId = category.Id;
+            var currentId = category.ParentCategory?.Id ?? default;
             while (currentId != 0)
             {
                 var currentCateg = await unitOfWork.Repository.GetCategory(currentId);
@@ -354,25 +354,25 @@ namespace expense.manager.Services
             return result;
         }
 
-        public async Task<bool> DeleteCategory(Category category)
+        public async Task<bool> DeleteCategory(Category categoryToDelete)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
             try
             {
 
-                await unitOfWork.Repository.DeleteCategory(category.Map<Category, CategoryData>());
+                await unitOfWork.Repository.DeleteCategory(categoryToDelete.Map<Category, CategoryData>());
 
-                var flattenedChildren = category.ChildrenCategories.SelectManyRecursive(l => l.ChildrenCategories);
+                var flattenedChildren = categoryToDelete.ChildrenCategories.SelectManyRecursive(l => l.ChildrenCategories);
 
                 foreach (var categ in flattenedChildren)
                 {
                     await unitOfWork.Repository.DeleteCategory(categ.Map<Category, CategoryData>());
                 }
 
-                var oldParentCategs = await GetParentCateg(category);
+                var oldParentCategs = await GetParentCateg(categoryToDelete);
                 foreach (var categ in oldParentCategs)
                 {
-                    var newRecurringBudget = categ.RecurringBudget - category.RecurringBudget;
+                    var newRecurringBudget = categ.RecurringBudget - categoryToDelete.RecurringBudget;
 
                     if (newRecurringBudget >= 0)
                     {
@@ -381,6 +381,9 @@ namespace expense.manager.Services
 
                     await unitOfWork.Repository.AddCategory(categ.Map<Category, CategoryData>());
                 }
+
+
+                await unitOfWork.Repository.DeleteExpenses(n => n.CategoryId == categoryToDelete.Id);
 
                 return true;
 

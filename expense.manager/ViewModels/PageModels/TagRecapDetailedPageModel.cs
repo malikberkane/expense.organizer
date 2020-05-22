@@ -4,6 +4,7 @@ using expense.manager.ViewModels.Base;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using expense.manager.Resources;
 
 namespace expense.manager.ViewModels.PageModels
 {

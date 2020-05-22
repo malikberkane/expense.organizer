@@ -1,23 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-using Android.App;
+﻿using System.ComponentModel;
 using Android.Content;
 using Android.Graphics;
-using Android.OS;
-using Android.Runtime;
 using Android.Text;
 using Android.Text.Method;
-using Android.Views;
 using Android.Widget;
-using expense.manager;
 using expense.manager.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-
+using expense.manager.Views;
 [assembly: ExportRenderer(typeof(NumericInput), typeof(NumericInputRenderer))]
 
 namespace expense.manager.Droid

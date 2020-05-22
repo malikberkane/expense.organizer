@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using expense.manager.Models;
+using expense.manager.Resources;
 using expense.manager.Utils;
 using Xamarin.Forms;
 

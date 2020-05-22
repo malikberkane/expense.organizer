@@ -12,9 +12,9 @@ namespace expense.manager.Services
         Task AddOrUpdateExpense(Expense expense);
 
 
-        Task<bool> DeleteExpense(Expense expense);
+        Task<bool> DeleteExpense(Expense expenseToDelete);
             
-        Task<bool> DeleteCategory(Category category);
+        Task<bool> DeleteCategory(Category categoryToDelete);
         Task<IEnumerable<Category>> GetCategoriesRecap(string monthId, Category parentCategory=null);
 
         Task AddOrUpdateSpecialBudget(Category category, double budget, string monthId);

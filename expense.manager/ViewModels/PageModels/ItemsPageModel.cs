@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using expense.manager.Resources;
 using expense.manager.Utils;
 using Xamarin.Forms;
 
@@ -55,11 +56,11 @@ namespace expense.manager.ViewModels.PageModels
             else if (actionKey == AppContent.Category)
             {
                 await NavigationService.NavigateTo<AddCategoryPageModel>(
-                    (new CategoryVm
+                    new CategoryVm
                                         {
                         ParentCategory = ItemsContext.Category 
                     }
-                    , ItemsContext.MonthId));
+                    );
 
             }
         }
@@ -200,11 +201,10 @@ namespace expense.manager.ViewModels.PageModels
 
         private Command _navigateToSettings;
 
-        public Command NavigateToSettings => _navigateToSettings ?? (
-                                             _navigateToSettings = new Command(async () =>
-                                             {
-                                                 await NavigationService.NavigateTo<ParametersPageModel>();
-                                             }));
+        public Command NavigateToSettings => _navigateToSettings ??= new Command(async () =>
+        {
+            await NavigationService.NavigateTo<ParametersPageModel>();
+        });
 
 
 
@@ -256,20 +256,19 @@ namespace expense.manager.ViewModels.PageModels
         private void ComputeHomeContextTitle()
         {
             var sum = Items?.Sum(n =>
-           {
-               if (n is ExpenseVm expense)
-               {
-                   return expense.Ammount;
-               }
-               else if (n is CategoryVm category)
-               {
-                   return category.AmmountSpent;
-               }
+            {
+                switch (n)
+                {
+                    case ExpenseVm expense:
+                        return expense.Ammount;
+                    case CategoryVm category:
+                        return category.AmmountSpent;
+                    default:
+                        return 0;
+                }
+            });
 
-               return 0;
-           });
-
-            if (sum != null)
+            if (sum == null) return;
             {
                 var budget = Items.Sum(n =>
                 {
@@ -282,17 +281,29 @@ namespace expense.manager.ViewModels.PageModels
 
                 if(budget!=null && budget != 0 && sum!=0)
                 {
-                    Title = $"{string.Format("{0:0.##}", sum)} {AppPreferences.CurrentCurrency?.symbol} | {string.Format("{0:0.##}", ((sum/budget)* 100))} % {AppContent.OfBudget}";
+                    Title = $"{sum:0.##} {AppPreferences.CurrentCurrency?.symbol}";
+
+                    BudgetRatioInfo = $"{((sum / budget) * 100):0.##} % {AppContent.OfBudget}";
 
                 }
                 else
                 {
-                    Title = $"{string.Format("{0:0.##}", sum)} {AppPreferences.CurrentCurrency?.symbol}";
+                    Title = $"{sum:0.##} {AppPreferences.CurrentCurrency?.symbol}";
 
                 }
             }
 
         }
+
+
+        public string BudgetRatioInfo
+        {
+            get => _budgetRatioInfo;
+            set => SetProperty(ref _budgetRatioInfo, value);
+        }
+
+        string _budgetRatioInfo = string.Empty;
+
     }
 
 }

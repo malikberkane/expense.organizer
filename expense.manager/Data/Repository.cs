@@ -64,9 +64,22 @@ namespace expense.manager.Data
                     _currentContext.ExpenseTagRelations.Remove(item);
                 }
 
+
                 return Task.CompletedTask;
             
         }
+
+        public Task DeleteExpenses(Expression<Func<ExpenseData, bool>> predicate)
+        {
+            var expensesToDelete = _currentContext.Expenses.Where(predicate);
+            if (expensesToDelete.Any())
+            {
+                _currentContext.RemoveRange(expensesToDelete);
+
+            }
+            return Task.CompletedTask;
+        }
+
         public async Task<int> AddExpense(ExpenseData expense)
         {
             
@@ -167,8 +180,6 @@ namespace expense.manager.Data
             _currentContext.ExpenseCategories.Remove(category);
 
             return Task.CompletedTask;
-
-            
 
         }
         public async Task<int> AddCategory(CategoryData category)

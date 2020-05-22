@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using expense.manager.Resources;
 using expense.manager.ViewModels;
 using Xamarin.Forms;
 
@@ -11,15 +12,16 @@ namespace expense.manager.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
             if (value == null)
             {
                 return AppContent.None;
             }
-            else if(value is CategoryVm categ)
-            {
-                return categ.Name;
-            }
+
+          
+             if(value is CategoryVm categ)
+             {
+                 return categ.Id != 0 ? categ.Name : AppContent.None;
+             }
 
             return value;
 

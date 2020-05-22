@@ -55,6 +55,7 @@ namespace expense.manager
             AppPreferences.LastUsedDate = DateTime.Now.Date.ToString();
         }
 
+
         private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             var swipeViewSent = (sender as SwipeView);

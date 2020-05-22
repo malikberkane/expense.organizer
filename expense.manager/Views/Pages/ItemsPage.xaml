@@ -8,7 +8,6 @@
     xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
     mc:Ignorable="d"
     x:Class="expense.manager.Views.Pages.ItemsPage"
-    x:Name="BrowseItemsPage"
     Visual="Material"
     BackgroundColor="{StaticResource MainColor}"
     Padding="10,0">
@@ -148,7 +147,14 @@
 
                                         </StackLayout>
                                         <ContentView HorizontalOptions="StartAndExpand" Margin="8,0">
-                                            <Label Text="{Binding Title}" FontSize="18" />
+                                            <StackLayout>
+                                                <Label Text="{Binding Title}" FontSize="18" />
+                                                <Label
+                                                    Text="{Binding BudgetRatioInfo}"
+                                                    FontSize="12"
+                                                    TextColor="Black" />
+
+                                            </StackLayout>
                                         </ContentView>
 
                                     </StackLayout>

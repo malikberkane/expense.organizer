@@ -9,6 +9,7 @@
     xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
     xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     xmlns:utils="clr-namespace:expense.manager.Utils;assembly=expense.manager"
+    xmlns:pages="clr-namespace:expense.manager.Views.Pages;assembly=expense.manager"
     Title="expense.manager"
     x:Class="expense.manager.AppShell">
 
@@ -35,8 +36,8 @@
 
 
     <TabBar>
-        <Tab Title="{x:Static resources:AppContent.ByCategTabTitle}" Icon="{utils:ImageResource Source=expense.manager.categ_icon.png}">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}">
+        <Tab Title="{x:Static resources:AppContent.ByCategTabTitle}" Icon="{utils:ImageResource Source=expense.manager.Resources.categ_icon.png}">
+            <ShellContent ContentTemplate="{DataTemplate pages:ItemsPage}">
                 <ShellContent.BindingContext>
                     <pagemodels:ItemsPageModel x:Name="MainRecapPageModel" />
 
@@ -44,7 +45,7 @@
             </ShellContent>
         </Tab>
         <Tab Title="{x:Static resources:AppContent.ByDateTabTitle}" Icon="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.Event}}">
-            <ShellContent ContentTemplate="{DataTemplate local:ExpenseByDatePage}">
+            <ShellContent ContentTemplate="{DataTemplate pages:ExpenseByDatePage}">
                 <ShellContent.BindingContext>
                     <pagemodels:ExpenseByDatePageModel x:Name="ExpenseByDatePageModel" />
 
@@ -55,7 +56,7 @@
         <Tab Title="{x:Static resources:AppContent.ByTagTabTitle}" Icon="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.LabelOutline}}">
 
 
-            <ShellContent ContentTemplate="{DataTemplate local:TagRecapPage}">
+            <ShellContent ContentTemplate="{DataTemplate pages:TagRecapPage}">
                 <ShellContent.BindingContext>
                     <pagemodels:TagRecapPageModel x:Name="TagRecapPageModel" />
 

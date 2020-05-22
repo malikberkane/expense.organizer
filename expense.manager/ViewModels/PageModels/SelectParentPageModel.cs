@@ -12,7 +12,7 @@ namespace expense.manager.ViewModels.PageModels
     public class SelectParentPageModel: BasePageModel
     {
         public SelectParentParameter CurrentParentContext { get; private set; }
-        public IEnumerable<CategoryVm> Categories { get; set; }
+        public List<CategoryVm> Categories { get; set; }
 
         public CategoryVm SelectedCategory { get; set; }
         public override Task LoadData()
@@ -21,6 +21,11 @@ namespace expense.manager.ViewModels.PageModels
 
             CurrentParentContext = selectParentContext;
             Categories = selectParentContext?.AllCategories;
+
+            if ( Categories!=null && CurrentParentContext?.UnselectableCategory != null && CurrentParentContext.AllCategories.Contains(CurrentParentContext.UnselectableCategory))
+            {
+                Categories.Remove(CurrentParentContext.UnselectableCategory);
+            }
             return base.LoadData();
         }
 
@@ -28,7 +33,7 @@ namespace expense.manager.ViewModels.PageModels
 
         public Command NavigateToChildrenListCommand => _navigateToChildrenList ??= new Command<CategoryVm> (async (categ) =>
             {
-                await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() { AllCategories = categ.Children});
+                await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() { UnselectableCategory = CurrentParentContext?.UnselectableCategory, AllCategories = categ.Children});
             }
         );
 
@@ -63,8 +68,8 @@ namespace expense.manager.ViewModels.PageModels
 
     public class SelectParentParameter
     {
-        public int LevelId { get; set; }
+        public CategoryVm UnselectableCategory { get; set; }
 
-        public IEnumerable<CategoryVm> AllCategories { get; set; }
+        public List<CategoryVm> AllCategories { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using expense.manager.Mapping;
 using expense.manager.Models;
+using expense.manager.Resources;
 using expense.manager.Services;
 using expense.manager.Utils;
 using expense.manager.ViewModels.Base;
@@ -114,7 +115,7 @@ namespace expense.manager.ViewModels.PageModels
         public Command SelectParentCommand => _selectParentCommand ??= new Command(async () =>
             {
                 var allCategories = (await Service.GetAllCategories())?.Select(c=>c.Map<Category,CategoryVm>());
-                await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() { LevelId = 0, AllCategories = allCategories });
+                await NavigationService.NavigateTo<SelectParentPageModel>(new SelectParentParameter() {AllCategories = allCategories?.ToList() });
             }
         );
 

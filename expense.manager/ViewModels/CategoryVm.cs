@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using expense.manager.Resources;
 using expense.manager.Utils;
 using expense.manager.ViewModels.Base;
 using Xamarin.Essentials;
