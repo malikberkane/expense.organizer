@@ -337,7 +337,7 @@ namespace expense.manager.Services
             foreach (var tag in alltags)
             {
                 tag.AmmountSpent =
-                    (await unitOfWork.Repository.GetExpenseFromTagAsync(tag.Id))?.Sum(expense => expense.Ammount);
+                    (await unitOfWork.Repository.GetExpenseFromTagAsync(tag.Id))?.Sum(expense => expense.Ammount) ?? 0;
             }
 
             unitOfWork.Complete();

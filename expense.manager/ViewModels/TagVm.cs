@@ -57,7 +57,7 @@ namespace expense.manager.ViewModels
  
 
 
-        public string AmmountFormatted => $"{string.Format("{0:0.##}", AmmountSpent)} {AppPreferences.CurrentCurrency?.symbol}";
+        public string AmmountFormatted => $"{AmmountSpent:0.##} {AppPreferences.CurrentCurrency?.symbol}";
 
     }
 }

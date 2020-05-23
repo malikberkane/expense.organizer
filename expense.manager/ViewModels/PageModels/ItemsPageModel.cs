@@ -279,11 +279,20 @@ namespace expense.manager.ViewModels.PageModels
                     return 0;
                 });
 
-                if(budget!=null && budget != 0 && sum!=0)
+                var sumForBudget= Items.Sum(n =>
+                {
+                    if (n is CategoryVm categ && categ.HasBudget)
+                    {
+                        return categ.AmmountSpent;
+                    }
+                    return 0;
+                });
+
+                if (budget!=null && budget != 0 && sumForBudget!=0)
                 {
                     Title = $"{sum:0.##} {AppPreferences.CurrentCurrency?.symbol}";
 
-                    BudgetRatioInfo = $"{((sum / budget) * 100):0.##} % {AppContent.OfBudget}";
+                    BudgetRatioInfo = $"{((sumForBudget / budget) * 100):0.##} % {AppContent.OfBudget}";
 
                 }
                 else
