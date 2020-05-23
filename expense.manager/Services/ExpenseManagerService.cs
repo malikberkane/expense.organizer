@@ -8,7 +8,6 @@ using expense.manager.Data;
 using expense.manager.Mapping;
 using expense.manager.Models;
 using expense.manager.Utils;
-using MethodTimer;
 using Newtonsoft.Json;
 
 namespace expense.manager.Services
@@ -225,7 +224,6 @@ namespace expense.manager.Services
         }
 
 
-        [Time] 
         public async Task<IEnumerable<Category>> GetCategoriesRecap(string monthId, Category parentCategory=null)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
@@ -269,7 +267,6 @@ namespace expense.manager.Services
             return categories;
         }
 
-        [Time]
         private async Task PopulateChildrenCategories(IEnumerable<Category> categories, IUnitOfWork currentunitOfWork) 
         {
             
