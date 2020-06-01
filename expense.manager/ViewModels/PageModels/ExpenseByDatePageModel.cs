@@ -1,6 +1,5 @@
 ﻿using expense.manager.Mapping;
 using expense.manager.Models;
-using expense.manager.Utils;
 using expense.manager.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -45,20 +44,18 @@ namespace expense.manager.ViewModels.PageModels
 
 
 
-        public DateTime PreviousMonth { get => _previousMonth; set { SetProperty(ref _previousMonth, value); } }
 
 
     
-        private DateTime _previousMonth;
+
         protected override void AfterLoadingData()
         {
             base.AfterLoadingData();
 
-            PreviousMonth = DateTime.Now.AddMonths(-1);
             var groups = Items.Select(t => t as ExpenseVm).GroupBy(n => (n.CreationDate.Date)).Select(n => new GroupedExpenses(n.Key, n));
 
 
-            if(groups!= null && groups.Any())
+            if(groups!= null)
             {
                 GroupedExpenses = new ObservableCollection<GroupedExpenses>(groups);
             }

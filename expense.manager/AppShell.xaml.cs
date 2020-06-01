@@ -41,7 +41,12 @@ namespace expense.manager
             var page = (Current?.CurrentItem?.CurrentItem as IShellSectionController)?.PresentedPage;
 
             if (!(page?.BindingContext is BasePageModel pageModel)) return base.OnBackButtonPressed();
-            pageModel.NavigateBackImpl();
+
+            if(Current.Navigation.NavigationStack.Count > 1)
+            {
+                pageModel.NavigateBackImpl();
+            }
+
             return true;
 
         }
