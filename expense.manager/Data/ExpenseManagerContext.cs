@@ -85,28 +85,28 @@ namespace expense.manager.Data
 
 
 
-            for (int i = 0; i < 12; i++)
-            {
-                for (int j = 0; j < 200; j++)
-                {
-                    var date = new DateTime(2020, random.Next(1, 12), randomDay.Next(1, 30));
-                    modelBuilder.Entity<ExpenseData>().HasData(new ExpenseData
-                    {
-                        Id = expenseId,
-                        CreationDate = date,
-                        ExpenseLabel = $"depense {j}",
-                        CategoryId = 0,
-                        MonthId = date.ToMonthId(),
-                        Ammount = random.NextDouble() * 10,
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    for (int j = 0; j < 200; j++)
+            //    {
+            //        var date = new DateTime(2020, random.Next(1, 12), randomDay.Next(1, 30));
+            //        modelBuilder.Entity<ExpenseData>().HasData(new ExpenseData
+            //        {
+            //            Id = expenseId,
+            //            CreationDate = date,
+            //            ExpenseLabel = $"depense {j}",
+            //            CategoryId = 0,
+            //            MonthId = date.ToMonthId(),
+            //            Ammount = random.NextDouble() * 10,
 
 
-                    });
+            //        });
 
-                    expenseId++;
+            //        expenseId++;
 
-                }
+            //    }
 
-            }
+            //}
 
 
 
