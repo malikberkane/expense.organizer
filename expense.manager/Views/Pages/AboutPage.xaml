@@ -29,7 +29,7 @@
         Padding="6"
         HorizontalOptions="Center">
         <Label
-            Text="Expense organizer v1.0"
+            Text="Expense organizer v1.1"
             HorizontalOptions="Start"
             Margin="3" />
 
