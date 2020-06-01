@@ -133,7 +133,7 @@
     <value>Add expense</value>
   </data>
   <data name="AddTagsLabel" xml:space="preserve">
-    <value>Add tags</value>
+    <value>Add tags to expense</value>
   </data>
   <data name="Alert" xml:space="preserve">
     <value>Alert</value>
@@ -246,6 +246,9 @@
   <data name="InvalidItemAlert" xml:space="preserve">
     <value>Label and amount are mandatory.</value>
   </data>
+  <data name="LoadPrevious" xml:space="preserve">
+    <value>Load previous</value>
+  </data>
   <data name="MonthlyRecurringBudgetLabel" xml:space="preserve">
     <value>Monthly recurring budget</value>
   </data>
@@ -295,10 +298,10 @@
     <value>Settings</value>
   </data>
   <data name="SpecificBudgetNote" xml:space="preserve">
-    <value>Enter an ammount in this field if you would like to assign a specific budget for the current month.</value>
+    <value>This is the specified budget in a previous month. Enter new amount if you would like to modify it.</value>
   </data>
   <data name="SpecifiedBudgetLabel" xml:space="preserve">
-    <value>Specified budget</value>
+    <value>Specified budget in</value>
   </data>
   <data name="String1" xml:space="preserve">
     <value />

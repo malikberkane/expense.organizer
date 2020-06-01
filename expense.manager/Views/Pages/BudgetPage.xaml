@@ -25,7 +25,7 @@
     <Shell.TitleView>
         <ContentView Padding="10">
             <Label
-                Text="{x:Static resources:AppContent.Budget}"
+                Text="{Binding Title}"
                 FontAttributes="Bold"
                 FontSize="Medium"
                 VerticalOptions="CenterAndExpand" />
@@ -37,7 +37,6 @@
             Spacing="6"
             AbsoluteLayout.LayoutBounds="0,1,1,1"
             AbsoluteLayout.LayoutFlags="All">
-            <Label Text="Budget" Margin="20" />
 
 
             <Frame>
@@ -54,17 +53,12 @@
 
                 </StackLayout>
             </Frame>
-            <Frame>
+            <Frame IsVisible="{Binding ShowSpecifiedBudget}">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal" Spacing="2">
-                        <StackLayout>
-                            <Label Text="{x:Static resources:AppContent.SpecifiedBudgetLabel}" />
+                        <Label Text="{x:Static resources:AppContent.SpecifiedBudgetLabel}" />
 
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{x:Static resources:AppContent.CurrentMonthLabel}" />
-                                <Label Text="{Binding CurrentMonthId}" />
-                            </StackLayout>
-                        </StackLayout>
+                        <Label Text="{Binding CurrentMonthId}" />
 
                         <ImageButton
                             VerticalOptions="Start"

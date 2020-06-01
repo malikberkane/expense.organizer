@@ -11,9 +11,9 @@ namespace expense.manager.Services
         Task<IEnumerable<Category>> GetAllCategories();
         Task AddOrUpdateExpense(Expense expense);
 
-
         Task<bool> DeleteExpense(Expense expenseToDelete);
-            
+
+        Task<IEnumerable<Expense>> GetPagedExpense(int page, int pageSize=100);
         Task<bool> DeleteCategory(Category categoryToDelete);
         Task<IEnumerable<Category>> GetCategoriesRecap(string monthId, Category parentCategory=null);
 

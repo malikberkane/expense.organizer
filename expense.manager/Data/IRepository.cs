@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -17,9 +18,16 @@ namespace expense.manager.Data
         Task<int> AddTag(TagData tag);
         Task DeleteCategory(CategoryData category);
         Task DeleteExpense(ExpenseData expense);
-        Task DeleteTag(TagData tag);
-        Task<IEnumerable<CategoryData>> GetAllCategories();
 
+        Task<IEnumerable<ExpenseData>> GetAllExpenses();
+
+        Task<IEnumerable<ExpenseData>> GetPagedExpense(Expression<Func<ExpenseData, bool>> predicate,
+                                         int page, int pageSize);
+
+
+        Task DeleteTag(TagData tag);
+
+        Task<IEnumerable<CategoryData>> GetAllCategories();
         Task DeleteExpenses(Expression<Func<ExpenseData, bool>> predicate);
 
         Task DeleteSpecialBudget(CategoryData category, string monthId);

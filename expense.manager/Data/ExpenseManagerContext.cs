@@ -78,32 +78,37 @@ namespace expense.manager.Data
                 }
             }
 
-            //var expenseId = 1;
-            //Random random = new Random();
+            var expenseId = 1;
+            Random random = new Random();
 
-            //for (int i = 1; i < 13; i++)
-            //{
-            //    for (int j = 0; j < 1000; j++)
-            //    {
-            //        var date = new DateTime(2020, random.Next(1, 12), 1);
-            //        modelBuilder.Entity<ExpenseData>().HasData(new ExpenseData
-            //        {
-            //            Id = expenseId,
-            //            CreationDate = date,
-            //            ExpenseLabel = $"dep{i}",
-            //            CategoryId = i,
-            //            MonthId = date.ToMonthId(),
-            //            Ammount = random.NextDouble() * 10,
+            Random randomDay = new Random();
 
 
-            //        });
 
-            //        expenseId++;
+            for (int i = 0; i < 12; i++)
+            {
+                for (int j = 0; j < 200; j++)
+                {
+                    var date = new DateTime(2020, random.Next(1, 12), randomDay.Next(1, 30));
+                    modelBuilder.Entity<ExpenseData>().HasData(new ExpenseData
+                    {
+                        Id = expenseId,
+                        CreationDate = date,
+                        ExpenseLabel = $"depense {j}",
+                        CategoryId = 0,
+                        MonthId = date.ToMonthId(),
+                        Ammount = random.NextDouble() * 10,
 
-            //    }
+
+                    });
+
+                    expenseId++;
+
+                }
+
+            }
 
 
-            //}
 
 
 

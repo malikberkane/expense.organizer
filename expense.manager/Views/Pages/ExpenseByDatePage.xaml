@@ -5,6 +5,7 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
+    xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     mc:Ignorable="d"
     x:Class="expense.manager.Views.Pages.ExpenseByDatePage"
     Padding="10"
@@ -22,73 +23,6 @@
                 ItemTemplate="{StaticResource ExpenseCellTemplate}"
                 VerticalOptions="FillAndExpand">
 
-                <CollectionView.Header>
-                    <StackLayout
-                        Orientation="Horizontal"
-                        Padding="20"
-                        BackgroundColor="{StaticResource MainColor}">
-                        <StackLayout.Resources>
-                            <ResourceDictionary>
-                                <Style TargetType="Label">
-                                    <Setter Property="TextColor" Value="{StaticResource HeaderItemsColor}" />
-
-                                </Style>
-                            </ResourceDictionary>
-                        </StackLayout.Resources>
-                        <Label
-                            Text="{Binding Title}"
-                            FontSize="18"
-                            VerticalOptions="CenterAndExpand" />
-
-                        <StackLayout
-                            Spacing="10"
-                            Orientation="Horizontal"
-                            HorizontalOptions="FillAndExpand"
-                            Margin="15">
-
-                            <ImageButton
-                                HorizontalOptions="FillAndExpand"
-                                Command="{Binding ChangeSelectedMonthCommand}"
-                                BackgroundColor="Transparent"
-                                IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
-                                Source="{FontImage FontFamily=MaterialFontFamily,
-                                                   Glyph={x:Static fonts:IconFont.ArrowBack},
-                                                   Color={StaticResource HeaderItemsColor},
-                                                   Size=20}">
-
-                                <ImageButton.CommandParameter>
-                                    <x:Int32>-1</x:Int32>
-                                </ImageButton.CommandParameter>
-                            </ImageButton>
-
-                            <Label
-                                Text="{Binding ItemsContext.MonthId}"
-                                FontSize="18"
-                                VerticalOptions="CenterAndExpand" />
-
-                            <ImageButton
-                                BackgroundColor="Transparent"
-                                IsEnabled="{Binding IsBusy, Converter={StaticResource NegateConverter}}"
-                                Command="{Binding ChangeSelectedMonthCommand}"
-                                HorizontalOptions="FillAndExpand"
-                                Source="{FontImage FontFamily=MaterialFontFamily,
-                                                   Glyph={x:Static fonts:IconFont.ArrowForward},
-                                                   Color={StaticResource HeaderItemsColor},
-                                                   Size=20}">
-
-                                <ImageButton.CommandParameter>
-                                    <x:Int32>1</x:Int32>
-                                </ImageButton.CommandParameter>
-
-                            </ImageButton>
-                        </StackLayout>
-
-
-
-                    </StackLayout>
-
-                </CollectionView.Header>
-
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ContentView Padding="10">
@@ -97,6 +31,14 @@
 
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.Footer>
+                    <Button
+                        BackgroundColor="Transparent"
+                        IsVisible="{Binding CanLoadPrevious}"
+                        Command="{Binding LoadMoreExpensesCommand}"
+                        Text="{x:Static resources:AppContent.LoadPrevious}" />
+                </CollectionView.Footer>
 
 
             </CollectionView>

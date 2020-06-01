@@ -47,16 +47,17 @@ namespace expense.manager.ViewModels.PageModels
         public Command AddItemCommand => _addItemCommand ??= new Command(async () =>
             {
 
-               
+                if (Category.RecurringBudget.HasValue && Category.RecurringBudget != 0 && InitialParentCategory!=null && InitialParentCategory != Category.ParentCategory)
+                {
+
+                    Category.RecurringBudget = 0;
+       
+                }
+
 
                 await Service.AddOrUpdateCategory(Category.Map<CategoryVm, Category>());
 
-                if ( Category.RecurringBudget.HasValue && Category.RecurringBudget!=0 && InitialParentCategory != Category.ParentCategory)
-                {
-
-                    await Service.UpdateParentCategsBudgets(InitialParentCategory.Map<CategoryVm, Category>(), Category.ParentCategory.Map<CategoryVm,Category>(),
-                        Category.RecurringBudget.Value);
-                }
+               
 
                 await NavigateBackImpl();
 

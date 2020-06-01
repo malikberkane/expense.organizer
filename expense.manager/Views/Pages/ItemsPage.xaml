@@ -168,6 +168,10 @@
 
                 <CollectionView.Header />
 
+                <CollectionView.Footer>
+                    <BoxView BackgroundColor="Transparent" />
+                </CollectionView.Footer>
+
             </CollectionView>
         </StackLayout>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using expense.manager.Mapping;
 using expense.manager.Models;
@@ -22,6 +23,22 @@ namespace expense.manager.Data
         {
             
                 return await _currentContext.Expenses.Where(predicate).ToListAsync();
+
+        }
+
+        public  async Task<IEnumerable<ExpenseData>> GetAllExpenses()
+        {
+
+            return await _currentContext.Expenses.ToListAsync();
+
+        }
+
+        public  async Task<IEnumerable<ExpenseData>> GetPagedExpense(Expression<Func<ExpenseData, bool>> predicate,
+                                         int page, int pageSize)
+        {
+          
+            var skip = (page - 1) * pageSize;
+            return await _currentContext.Expenses.OrderByDescending(e => e.CreationDate).Skip(skip).Take(pageSize).ToListAsync();
 
         }
 

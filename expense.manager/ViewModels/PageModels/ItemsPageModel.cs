@@ -150,9 +150,7 @@ namespace expense.manager.ViewModels.PageModels
         public async Task BudgetCategoryImpl(CategoryVm categ)
         {
 
-
-            await NavigationService.NavigateTo<BudgetPageModel>((categ, ItemsContext.MonthId));
-
+            await NavigationService.NavigateTo<BudgetPageModel>((categ, ItemsContext));
         }
 
 

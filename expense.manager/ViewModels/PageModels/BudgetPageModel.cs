@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using expense.manager.Mapping;
 using expense.manager.Models;
 using expense.manager.Resources;
@@ -29,20 +31,27 @@ namespace expense.manager.ViewModels.PageModels
 
         public override async Task LoadData()
         {
-            var param = Parameter as (CategoryVm categ, string monthId)?;
+            var param = Parameter as (CategoryVm categ, ItemsContext context)?;
 
 
             
-            if (param?.categ != null && param?.monthId !=null)
+            if (param?.categ != null && param?.context !=null)
             {
 
                 Category = param.Value.categ;
-                CurrentMonthId = param.Value.monthId;
-                InitialSpecialBudget=SpecifiedBudget = await Service.GetSpecifiedBudget(Category.Map<CategoryVm, Category>(), param.Value.monthId);
+                CurrentMonthId = param.Value.context.MonthId;
+                InitialSpecialBudget=SpecifiedBudget = await Service.GetSpecifiedBudget(Category.Map<CategoryVm, Category>(), param.Value.context.MonthId);
 
                 InitialRecurringBudget = Category.RecurringBudget;
+
+                Title = $"{ AppContent.Budget}: {(Category.Name).ToLower()}";
+
+                ShowSpecifiedBudget = new DateTime(DateTime.Now.Year, DateTime.Now.Month,1) > param.Value.context.ContextDate;
+
+
             }
-            
+
+
         }
 
 
@@ -55,10 +64,10 @@ namespace expense.manager.ViewModels.PageModels
 
                 if (Category.RecurringBudget.HasValue && InitialRecurringBudget != Category.RecurringBudget)
                 {
+
                     await Service.AddOrUpdateCategory(Category.Map<CategoryVm, Category>());
 
-                    await Service.UpdateParentRecurringBudgets(Category.ParentCategory.Map<CategoryVm, Category>(),
-                        InitialRecurringBudget, Category.RecurringBudget.Value);
+                
 
                 }
 
@@ -85,5 +94,7 @@ namespace expense.manager.ViewModels.PageModels
         );
 
         public double? SpecifiedBudget { get; set; }
+
+        public bool ShowSpecifiedBudget { get; set; }
     }
 }

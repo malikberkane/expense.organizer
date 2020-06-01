@@ -78,8 +78,8 @@
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
                             CommandParameter="{Binding .}" />
                         <SwipeItem
+                            IsDestructive="True"
                             Text="{x:Static resources:AppContent.Delete}"
-                            BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
                             CommandParameter="{Binding .}" />
                     </SwipeItems>
@@ -88,6 +88,7 @@
                 <SwipeView.RightItems>
                     <SwipeItems SwipeBehaviorOnInvoked="Auto">
                         <SwipeItem
+                            IsVisible="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.IsHomeContext}"
                             Text="{x:Static resources:AppContent.Budget}"
                             BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.BudgetCategoryCommand}"

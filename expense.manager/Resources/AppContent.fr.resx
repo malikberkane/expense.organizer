@@ -133,7 +133,7 @@
     <value>Ajout dépense</value>
   </data>
   <data name="AddTagsLabel" xml:space="preserve">
-    <value>Ajouter tags</value>
+    <value>Ajouter des tags à la dépense</value>
   </data>
   <data name="Alert" xml:space="preserve">
     <value>Alerte</value>
@@ -246,6 +246,9 @@
   <data name="InvalidItemAlert" xml:space="preserve">
     <value>Le libellé et le montant sont obligatoires.</value>
   </data>
+  <data name="LoadPrevious" xml:space="preserve">
+    <value>Précédent</value>
+  </data>
   <data name="MonthlyRecurringBudgetLabel" xml:space="preserve">
     <value>Budget mensuel</value>
   </data>
@@ -295,10 +298,10 @@
     <value>Paramètres</value>
   </data>
   <data name="SpecificBudgetNote" xml:space="preserve">
-    <value>Renseigner un montant ici si vous souhaitez assigner un budget spécifique pour ce mois.</value>
+    <value>Ceci est le budget renseigné lors d'un mois passé. Veuillez le modifier ici si vous le souhaitez.</value>
   </data>
   <data name="SpecifiedBudgetLabel" xml:space="preserve">
-    <value>Budget spécifique</value>
+    <value>Budget spécifique en</value>
   </data>
   <data name="TagChoicePageTitle" xml:space="preserve">
     <value>Tags</value>

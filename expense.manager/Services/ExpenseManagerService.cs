@@ -63,6 +63,14 @@ namespace expense.manager.Services
             return (await unitOfWork.Repository.GetExpenses(e => e.MonthId == monthId && e.CategoryId == categoryId))?.Select(expense => expense.Map<ExpenseData, Expense>()).OrderByDescending(e => e.CreationDate).ToList();
         }
 
+        public async Task<IEnumerable<Expense>> GetPagedExpense(int page, int pageSize=100)
+        {
+            using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
+            return (await unitOfWork.Repository.GetPagedExpense(e => true, page, pageSize))?.Select(expense => expense.Map<ExpenseData, Expense>()).ToList();
+
+        }
+
+
         public async Task<IEnumerable<Tag>> GetTagsForExpense(int expenseId)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
@@ -167,11 +175,7 @@ namespace expense.manager.Services
                     categ.RecurringBudget = newRecurringBudget;
                 }
 
-
                 await unitOfWork.Repository.AddCategory(categ.Map<Category, CategoryData>());
-
-
-
 
 
             }

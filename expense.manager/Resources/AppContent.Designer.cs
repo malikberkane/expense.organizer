@@ -106,7 +106,7 @@ namespace expense.manager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add tags.
+        ///   Looks up a localized string similar to Add tags to expense.
         /// </summary>
         public static string AddTagsLabel {
             get {
@@ -448,6 +448,15 @@ namespace expense.manager.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Load previous.
+        /// </summary>
+        public static string LoadPrevious {
+            get {
+                return ResourceManager.GetString("LoadPrevious", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monthly recurring budget.
         /// </summary>
         public static string MonthlyRecurringBudgetLabel {
@@ -592,7 +601,7 @@ namespace expense.manager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter an ammount in this field if you would like to assign a specific budget for the current month..
+        ///   Looks up a localized string similar to This is the specified budget in a previous month. Enter new amount if you would like to modify it..
         /// </summary>
         public static string SpecificBudgetNote {
             get {
@@ -601,7 +610,7 @@ namespace expense.manager.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Specified budget.
+        ///   Looks up a localized string similar to Specified budget in.
         /// </summary>
         public static string SpecifiedBudgetLabel {
             get {

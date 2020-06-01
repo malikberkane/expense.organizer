@@ -84,7 +84,7 @@ namespace expense.manager.ViewModels
 
 
 
-        public string AmmountFormatted => $"{AmmountSpent:0.##} {AppPreferences.CurrentCurrency?.symbol}";
+        public string AmmountFormatted => AmmountSpent.HasValue && AmmountSpent!=0  ? $"{AmmountSpent:0.##} {AppPreferences.CurrentCurrency?.symbol}" :null;
 
 
         public override bool Equals(object obj)
