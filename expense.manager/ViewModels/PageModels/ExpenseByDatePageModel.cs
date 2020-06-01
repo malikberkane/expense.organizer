@@ -44,9 +44,17 @@ namespace expense.manager.ViewModels.PageModels
 
 
 
+        protected override async Task AddItemImpl()
+        {
+            await NavigationService.NavigateTo<AddExpensePageModel>(
+                              new ExpenseVm()
+                              {
+                                  CreationDate = DateTime.Now,
+                                  CategoryId = ItemsContext.Category.Id
+                              });
+        }
 
 
-    
 
         protected override void AfterLoadingData()
         {
