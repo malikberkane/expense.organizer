@@ -78,7 +78,6 @@
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.EditItemCommand}"
                             CommandParameter="{Binding .}" />
                         <SwipeItem
-                            IsDestructive="True"
                             Text="{x:Static resources:AppContent.Delete}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
                             CommandParameter="{Binding .}" />
