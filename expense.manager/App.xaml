@@ -79,6 +79,7 @@
                             CommandParameter="{Binding .}" />
                         <SwipeItem
                             Text="{x:Static resources:AppContent.Delete}"
+                            BackgroundColor="{StaticResource MainColor}"
                             Command="{Binding Source={x:Reference mySwipeView}, Path=Parent.BindingContext.DeleteItemCommand}"
                             CommandParameter="{Binding .}" />
                     </SwipeItems>
