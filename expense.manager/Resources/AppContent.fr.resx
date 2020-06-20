@@ -225,6 +225,9 @@
   <data name="ExpenseLabelPlaceholder" xml:space="preserve">
     <value>Description</value>
   </data>
+  <data name="FileSaveLocation" xml:space="preserve">
+    <value>Le fichier a été sauvergardé à l'emplacement suivant:</value>
+  </data>
   <data name="Food" xml:space="preserve">
     <value>Alimentaire</value>
   </data>
@@ -294,8 +297,17 @@
   <data name="SelectParentPageTitle" xml:space="preserve">
     <value>Catégorie parent</value>
   </data>
+  <data name="SendCsvBackup" xml:space="preserve">
+    <value>Exporter dépenses vers fichier csv</value>
+  </data>
   <data name="SettingsPageTitle" xml:space="preserve">
     <value>Paramètres</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Partager</value>
+  </data>
+  <data name="ShareCsvPrompt" xml:space="preserve">
+    <value>Voulez-vous partager le csv?</value>
   </data>
   <data name="SpecificBudgetNote" xml:space="preserve">
     <value>Ceci est le budget renseigné lors d'un mois passé. Veuillez le modifier ici si vous le souhaitez.</value>

@@ -11,19 +11,28 @@
     x:Class="expense.manager.Views.ExpenseCell">
 
     <Frame Padding="20" BackgroundColor="{StaticResource FrameBackgroundColor}">
-        <StackLayout Orientation="Horizontal">
-            <Image Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.Payment}, Color={StaticResource SecondaryColor}, Size=25}" BackgroundColor="Transparent" />
+
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="{FontImage FontFamily=MaterialFontFamily, Glyph={x:Static fonts:IconFont.Payment}, Color={StaticResource SecondaryColor}, Size=25}" BackgroundColor="Transparent" />
+                <Label
+                    Text="{Binding ExpenseLabel}"
+                    FontSize="18"
+                    TextColor="{StaticResource CellItemsColor}" />
+                <Label
+                    Text="{Binding AmmountFormatted}"
+                    HorizontalOptions="EndAndExpand"
+                    TextColor="{StaticResource CellItemsColor}" />
+            </StackLayout>
+
             <Label
-                Text="{Binding ExpenseLabel}"
-                FontSize="18"
-                TextColor="{StaticResource CellItemsColor}" />
-            <Label
-                Text="{Binding AmmountFormatted}"
-                HorizontalOptions="EndAndExpand"
+                Margin="3,0"
+                IsVisible="{Binding HasDateValue}"
+                x:Name="DateLabel"
+                Text="{Binding DateFormat}"
+                FontSize="12"
                 TextColor="{StaticResource CellItemsColor}" />
         </StackLayout>
-
-
 
 
 

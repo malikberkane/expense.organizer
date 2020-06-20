@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using CsvHelper;
 using expense.manager.Data;
 using expense.manager.Mapping;
 using expense.manager.Models;
 using expense.manager.Utils;
 using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace expense.manager.Services
 {
@@ -134,6 +137,27 @@ namespace expense.manager.Services
             unitOfWork.Complete();
         }
 
+        public async Task<string> ExportExpensesAsCsv()
+        {
+            var filePath = DependencyService.Get<IFileHelper>()?.GetCsvFile();
+
+            var expenses = await GetAllExpenses();
+
+
+            if (filePath == null)
+            {
+                throw new Exception("Problem finding target folder");
+            }
+
+            
+          await using var writer = new StreamWriter(filePath);
+          await using var csv = new CsvWriter(writer, CultureInfo.InvariantCulture); 
+          csv.WriteRecords(expenses);
+            
+
+            return filePath;
+        }
+
         public async Task UpdateParentRecurringBudgets(Category parentCateg, double? oldBudget, double newBudget)
         {
             using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
@@ -226,6 +250,24 @@ namespace expense.manager.Services
 
             return categories;
         }
+
+        public async Task<IEnumerable<Expense>> GetAllExpenses()
+        {
+            using var unitOfWork = new UnitOfWork(new ExpenseManagerContext());
+            var expenses =
+                (await unitOfWork.Repository.GetAllExpenses())?.Select(n =>
+                    n.Map<ExpenseData, Expense>()).ToList();
+
+            expenses?.ForEach(async (e) =>
+            {
+                var categName = await unitOfWork.Repository.GetCategory(e.CategoryId);
+                e.CategoryName = categName?.Name;
+            });
+
+         
+            return expenses;
+        }
+
 
 
         public async Task<IEnumerable<Category>> GetCategoriesRecap(string monthId, Category parentCategory=null)

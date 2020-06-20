@@ -9,6 +9,7 @@
     mc:Ignorable="d"
     x:Class="expense.manager.Views.Pages.ItemsPage"
     Visual="Material"
+    ControlTemplate="{StaticResource BasePageControlTemplate}"
     BackgroundColor="{StaticResource MainColor}"
     Padding="10,0">
 
@@ -195,12 +196,6 @@
 
 
 
-        <ActivityIndicator
-            IsRunning="{Binding IsBusy, FallbackValue=True}"
-            Color="Red"
-            InputTransparent="True"
-            AbsoluteLayout.LayoutBounds=".5,.5,.1,.1"
-            AbsoluteLayout.LayoutFlags="All" />
     </AbsoluteLayout>
 
 </ContentPage>

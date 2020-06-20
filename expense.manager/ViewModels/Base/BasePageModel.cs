@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using expense.manager.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace expense.manager.ViewModels.Base
@@ -100,13 +101,22 @@ namespace expense.manager.ViewModels.Base
                 return;
             }
 
-         
 
 
-            this.IsBusy = true;
+            var mainThread = MainThread.IsMainThread;
+
+            MainThread.BeginInvokeOnMainThread(()=>
+            {
+                this.IsBusy = true;
+
+            });
             await action();
 
-            this.IsBusy = false;
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                this.IsBusy = false;
+
+            });
 
         }
 

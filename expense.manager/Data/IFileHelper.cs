@@ -4,5 +4,7 @@
     {
         string GetConnection();
 
+        string GetCsvFile();
+
     }
 }

@@ -8,6 +8,7 @@
     xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     mc:Ignorable="d"
     x:Class="expense.manager.Views.Pages.ExpenseByDatePage"
+    ControlTemplate="{StaticResource BasePageControlTemplate}"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}">
 
@@ -61,10 +62,6 @@
                                Size=60}"
             BackgroundColor="Transparent" />
 
-        <ActivityIndicator
-            IsRunning="{Binding IsBusy, FallbackValue=True}"
-            Color="Red"
-            AbsoluteLayout.LayoutBounds=".5,.5,.1,.1"
-            AbsoluteLayout.LayoutFlags="All" />
+
     </AbsoluteLayout>
 </ContentPage>

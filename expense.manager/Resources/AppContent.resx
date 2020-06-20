@@ -225,6 +225,9 @@
   <data name="ExpenseLabelPlaceholder" xml:space="preserve">
     <value>Enter label</value>
   </data>
+  <data name="FileSaveLocation" xml:space="preserve">
+    <value>The file was saved in the following folder:</value>
+  </data>
   <data name="Food" xml:space="preserve">
     <value>Food</value>
   </data>
@@ -294,8 +297,17 @@
   <data name="SelectParentPageTitle" xml:space="preserve">
     <value>Parent category</value>
   </data>
+  <data name="SendCsvBackup" xml:space="preserve">
+    <value>Backup expenses in csv file</value>
+  </data>
   <data name="SettingsPageTitle" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="ShareCsvPrompt" xml:space="preserve">
+    <value>Would you like to share the csv?</value>
   </data>
   <data name="SpecificBudgetNote" xml:space="preserve">
     <value>This is the specified budget in a previous month. Enter new amount if you would like to modify it.</value>

@@ -19,5 +19,13 @@ namespace expense.manager.Droid
             return Path.Combine(path, fileName);
 
         }
+
+        public string GetCsvFile()
+        {
+            var fileName = "Expenses_backup.csv";
+            string path = global::Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            return Path.Combine(path, fileName);
+
+        }
     }
 }

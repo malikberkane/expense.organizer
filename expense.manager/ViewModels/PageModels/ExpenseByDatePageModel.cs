@@ -28,7 +28,11 @@ namespace expense.manager.ViewModels.PageModels
 
                 currentPage = 1;
 
-                var expenses = (await Service.GetPagedExpense(currentPage)).Select(n => n.Map<Expense, ExpenseVm>());
+                var expenses = (await Service.GetPagedExpense(currentPage)).Select(n => {
+                    var result = n.Map<Expense, ExpenseVm>();
+                    result.ShowCompleteDate = false ;
+                    return result;
+                    });
                 if (expenses != null && expenses.Any())
                 {
                     result.AddRange(expenses);
@@ -89,7 +93,11 @@ namespace expense.manager.ViewModels.PageModels
                 currentPage++;
                  
           
-                var expenses = (await Service.GetPagedExpense(currentPage)).Select(n => n.Map<Expense, ExpenseVm>());
+                var expenses = (await Service.GetPagedExpense(currentPage)).Select(n => {
+                    var result = n.Map<Expense, ExpenseVm>();
+                    result.ShowCompleteDate = false;
+                    return result;
+                });
                 if (expenses != null && expenses.Any())
                 {
                     foreach (var expense in expenses)

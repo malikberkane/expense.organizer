@@ -19,6 +19,25 @@ namespace expense.manager.ViewModels
         private string _name;
         private double _ammount;
 
+        public bool ShowCompleteDate { get; set; } = true;
+
+        public bool HasDateValue => !string.IsNullOrEmpty(DateFormat);
+
+        public string DateFormat => ExpenseDateFormat();
+
+        private string ExpenseDateFormat()
+        {
+            if (ShowCompleteDate)
+            {
+                return CreationDate.TimeOfDay.Ticks > 0 ? $"{CreationDate:dd/MM/yy HH:mm}" : $"{CreationDate:dd/MM/yy}";
+            }
+            else
+            {
+                return CreationDate.TimeOfDay.Ticks > 0 ? $"{CreationDate:HH:mm}" : null;
+
+            }
+        }
+
         public int Id
         {
             get => _id;
@@ -31,6 +50,8 @@ namespace expense.manager.ViewModels
             set
             {
                 SetProperty(ref _creationDate, value);
+                OnPropertyChanged(nameof(DateFormat));
+                OnPropertyChanged(nameof(HasDateValue));
 
             }
         }

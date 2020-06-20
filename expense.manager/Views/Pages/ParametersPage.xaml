@@ -5,11 +5,11 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:manager="clr-namespace:expense.manager;assembly=expense.manager"
     xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
+    x:Class="expense.manager.Views.Pages.ParametersPage"
+    ControlTemplate="{StaticResource BasePageControlTemplate}"
     BackgroundColor="{StaticResource MainColor}"
-    Padding="10"
-    x:Class="expense.manager.Views.Pages.ParametersPage">
+    Padding="10">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Frame">
@@ -47,6 +47,15 @@
                     <TapGestureRecognizer Command="{Binding NavigateToAboutPage}" />
                 </Label.GestureRecognizers>
             </Label>
+        </Frame>
+
+        <Frame>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding ExportToCsvCommand}" />
+            </Frame.GestureRecognizers>
+
+            <Label Text="Export to csv" />
+
         </Frame>
     </StackLayout>
 </ContentPage>

@@ -8,6 +8,7 @@
     xmlns:views="clr-namespace:expense.manager.Views"
     xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     Title="{Binding CurrentTag.Name}"
+    ControlTemplate="{StaticResource BasePageControlTemplate}"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}"
     x:Class="expense.manager.Views.Pages.TagRecapDetailedPage">

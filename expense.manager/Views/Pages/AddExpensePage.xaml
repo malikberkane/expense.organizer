@@ -11,6 +11,7 @@
     mc:Ignorable="d"
     Padding="10"
     BackgroundColor="{StaticResource MainColor}"
+    ControlTemplate="{StaticResource BasePageControlTemplate}"
     Title="{Binding Title}"
     x:Name="CurrentPage"
     x:Class="expense.manager.Views.Pages.AddExpensePage">

@@ -10,6 +10,7 @@
     xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
     mc:Ignorable="d"
     Padding="10"
+    ControlTemplate="{StaticResource BasePageControlTemplate}"
     BackgroundColor="{StaticResource MainColor}"
     x:Class="expense.manager.Views.Pages.AddCategoryPage">
 

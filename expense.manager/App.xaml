@@ -8,6 +8,7 @@
     xmlns:fonts="clr-namespace:expense.manager.Resources.Fonts;assembly=expense.manager"
     xmlns:converters="clr-namespace:expense.manager.Converters;assembly=expense.manager"
     xmlns:resources="clr-namespace:expense.manager.Resources;assembly=expense.manager"
+    xmlns:local="clr-namespace:expense.manager.ViewModels.Base;assembly=expense.manager"
     mc:Ignorable="d"
     x:Class="expense.manager.App">
     <Application.Resources>
@@ -18,9 +19,8 @@
         </Style>
 
 
-        <Style TargetType="ContentPage">
-            <Setter Property="Visual" Value="Material" />
-        </Style>
+
+
 
 
         <Style TargetType="Entry">
@@ -160,6 +160,24 @@
         <converters:NegateConverter x:Key="NegateConverter" />
 
 
+        <ControlTemplate x:Key="BasePageControlTemplate">
+            <AbsoluteLayout>
+
+                <ContentPresenter AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
+                <ActivityIndicator
+                    IsRunning="{TemplateBinding BindingContext.IsBusy}"
+                    Color="Red"
+                    InputTransparent="True"
+                    AbsoluteLayout.LayoutBounds=".5,.5,.1,.1"
+                    AbsoluteLayout.LayoutFlags="All" />
+            </AbsoluteLayout>
+        </ControlTemplate>
+
+
+        <Style TargetType="ContentPage">
+            <Setter Property="Visual" Value="Material" />
+
+        </Style>
 
     </Application.Resources>
 

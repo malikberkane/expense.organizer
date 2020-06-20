@@ -81,9 +81,9 @@ namespace expense.manager.Services
             return Shell.Current.DisplayAlert(title ?? AppContent.Alert, message, okMessage ?? AppContent.Ok);
         }
 
-        public Task<bool> DisplayYesNoMessage(string content)
+        public Task<bool> DisplayYesNoMessage(string content, string yesMessage=null, string noMessage=null)
         {
-            return Shell.Current.DisplayAlert(AppContent.Alert, content, AppContent.Yes, AppContent.No);
+            return Shell.Current.DisplayAlert(AppContent.Alert, content, yesMessage ?? AppContent.Yes, noMessage ?? AppContent.No);
         }
 
         public Task<string> DisplayPrompt(string content, string placeholder = null)

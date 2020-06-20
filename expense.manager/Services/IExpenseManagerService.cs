@@ -9,6 +9,8 @@ namespace expense.manager.Services
     {
 
         Task<IEnumerable<Category>> GetAllCategories();
+
+        Task<IEnumerable<Expense>> GetAllExpenses();
         Task AddOrUpdateExpense(Expense expense);
 
         Task<bool> DeleteExpense(Expense expenseToDelete);
@@ -36,5 +38,7 @@ namespace expense.manager.Services
         Task<double?> GetSpecifiedBudget(Category category, string monthId);
         Task DeleteSpecialBudget(Category category, string monthId);
         Task PersistPreviousMonthBudget(string monthId);
+
+        Task<string> ExportExpensesAsCsv();
     }
 }

@@ -385,6 +385,15 @@ namespace expense.manager.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file was saved in the following folder:.
+        /// </summary>
+        public static string FileSaveLocation {
+            get {
+                return ResourceManager.GetString("FileSaveLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Food.
         /// </summary>
         public static string Food {
@@ -592,11 +601,38 @@ namespace expense.manager.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup expenses in csv file.
+        /// </summary>
+        public static string SendCsvBackup {
+            get {
+                return ResourceManager.GetString("SendCsvBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsPageTitle {
             get {
                 return ResourceManager.GetString("SettingsPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to share the csv?.
+        /// </summary>
+        public static string ShareCsvPrompt {
+            get {
+                return ResourceManager.GetString("ShareCsvPrompt", resourceCulture);
             }
         }
         

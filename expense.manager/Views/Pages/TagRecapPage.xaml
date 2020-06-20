@@ -10,6 +10,7 @@
     Title="{x:Static resources:AppContent.TagRecapPageTitle}"
     BackgroundColor="{StaticResource MainColor}"
     Padding="10"
+    ControlTemplate="{StaticResource BasePageControlTemplate}"
     x:Class="expense.manager.Views.Pages.TagRecapPage">
     <Shell.NavBarIsVisible>False</Shell.NavBarIsVisible>
 
